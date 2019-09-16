@@ -1,5 +1,5 @@
 public class Direction {
 
-    String directionName;
-    String room;
+    private String directionName;
+    private String room;
 }

@@ -1,8 +1,8 @@
 public class Layout {
 
-    String startingRoom;
-    String endingRoom;
-    Room[] room;
+    private String startingRoom;
+    private String endingRoom;
+    private Room[] room;
 
 
 

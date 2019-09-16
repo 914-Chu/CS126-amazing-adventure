@@ -1,6 +1,7 @@
 public class Room {
 
-    String name;
-    String description;
-    Direction[] directions;
+    private String name;
+    private String description;
+    private Items[] items;
+    private Direction[] directions;
 }
