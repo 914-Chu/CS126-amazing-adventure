@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 public class Layout {
 
     private String startingRoom;
@@ -10,10 +12,13 @@ public class Layout {
 
     public Room findRoom(String room) {
 
-        for(Room r : roomList) {
+        for (Room r : roomList) {
 
-            
+            if (r.getRoomName() == room) {
+                return r;
+            }
         }
+        return null;
     }
 
 }
