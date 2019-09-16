@@ -9,4 +9,6 @@ public class Room {
     public String getRoomDescription() {return description;};
     public Items[] getItemsList() {return items;};
     public Direction[] getDirectionsList() {return directions;};
+
+
 }

@@ -4,5 +4,5 @@ public class Direction {
     private String room;
 
     public String getDirectionName() {return directionName;};
-    public String getRoom()
+    public String getRoomInDirection() {return room;};
 }

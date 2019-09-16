@@ -12,6 +12,13 @@ public class MAIN {
 
         String content =  URLReader(new URL("https://courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json"));
         Layout layout = new Gson().fromJson(content, Layout.class);
+        boolean status = true;
+
+        System.out.println(layout.getStartingRoom().get);
+
+        do{
+            
+        }while(status);
 
 
     }
