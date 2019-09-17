@@ -34,7 +34,6 @@ public class MAIN {
 
                 if(checkDirection(userInput,currentRoom)) {
                     currentRoom = layout.findRoom(currentRoom.getNextRoom());
-                    System.out.println(currentRoom.getRoomDescription());
                 }
             }else {
 
@@ -75,21 +74,21 @@ public class MAIN {
 
         int listSize =  room.getDirectionsList().size();
         List<Direction> directionList = room.getDirectionsList();
+        String direction;
         if(listSize > 1) {
 
             for (int i = 0; i < listSize - 1; i++) {
 
-                String direction = directionList.get(i).getDirectionName();
+                direction = directionList.get(i).getDirectionName();
                 System.out.print(direction);
                 System.out.print(", ");
             }
-
+            direction = directionList.get(listSize-1).getDirectionName();
+            System.out.printf("or %s\n", direction);
         }else {
 
-            System.out.println();
+            System.out.println(directionList.get(0).getDirectionName());
         }
-        System.out.println();
-        System.out.println();
     }
 
     public static boolean checkDirection(String userInput, Room room) {
