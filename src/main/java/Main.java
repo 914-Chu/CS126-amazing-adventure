@@ -10,59 +10,40 @@ public class Main {
 
     public static void main(String[] args) throws IOException{
 
-        String content =  URLReader(new URL("https://courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json"));
-        Layout layout = new Gson().fromJson(content, Layout.class);
+
+        String json =  URLConverter.getJson();
+        Layout layout = new Gson().fromJson(json, Layout.class);
         String startingRoom = layout.getStartingRoom();
         String endingRoom = layout.getEndingRoom();
         String userInput;
         Room currentRoom = layout.findRoom(startingRoom);
-        boolean start =true;
-        boolean end = false;
+        boolean isStart = true;
+        boolean isEnd = false;
 
         do{
             System.out.println(currentRoom.getRoomDescription());
-            if(start) {
+            if(isStart) {
                 System.out.println("Your journey begins here");
-                start = false;
+                isStart = false;
             }
             userInput = getUserInput(currentRoom);
 
             if(userInput.equalsIgnoreCase("exit") || userInput.equalsIgnoreCase("quit")) {
 
-                end = true;
+                isEnd = true;
             }else if(checkInput(userInput)){
 
                 if(checkDirection(userInput,currentRoom)) {
-                    currentRoom = layout.findRoom(currentRoom.getNextRoom());
-                    if(checkEnd(currentRoom, endingRoom)) {
 
-                        end = true;
-                        System.out.println("You've reached the ending room, thank you for playing.");
-                    };
+                    currentRoom = layout.findRoom(currentRoom.getNextRoom());
+                    isEnd = checkEnd(currentRoom, endingRoom);
                 }
             }else {
 
                 System.out.printf("I don't understand '%s'\n", userInput);
             }
 
-        }while(!end);
-    }
-
-    public static String URLReader(URL url) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        String line;
-
-        InputStream in = url.openStream();
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-            while ((line = reader.readLine()) != null) {
-                sb.append(line).append(System.lineSeparator());
-            }
-        } finally {
-            in.close();
-        }
-
-        return sb.toString();
+        }while(!isEnd);
     }
 
     public static String getUserInput(Room currentRoom) throws IOException{
@@ -114,7 +95,13 @@ public class Main {
 
     public static boolean checkEnd(Room currentRoom, String endingRoom) {
 
-        return currentRoom.getRoomName().equalsIgnoreCase(endingRoom);
+        boolean isEnd = currentRoom.getRoomName().equalsIgnoreCase(endingRoom);
+
+        if(isEnd) {
+            System.out.println("You've reached the ending room, thank you for playing.");
+        }
+
+        return isEnd;
     }
 
     public static boolean checkInput(String userInput) {
