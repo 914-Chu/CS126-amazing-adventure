@@ -37,7 +37,7 @@ public class MAIN {
                 }
             }else {
 
-                System.out.printf("I don't understand '%s'", userInput);
+                System.out.printf("I don't understand '%s'\n", userInput);
             }
 
         }while(status);
@@ -89,7 +89,6 @@ public class MAIN {
 
             System.out.println(directionList.get(0).getDirectionName());
         }
-        
     }
 
     public static boolean checkDirection(String userInput, Room room) {
