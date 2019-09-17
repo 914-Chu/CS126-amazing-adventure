@@ -20,8 +20,12 @@ public class MAIN {
         boolean status = true;
 
         do{
+            System.out.println(currentRoom.getRoomDescription());
+            if(starting) {
+                System.out.println("Your journey begins here");
+                starting = false;
+            }
             userInput = getUserInput(currentRoom);
-            if(starting) { System.out.println("Your journey begins here"); }
 
             if(userInput.equalsIgnoreCase("exit") || userInput.equalsIgnoreCase("quit")) {
 
@@ -61,11 +65,9 @@ public class MAIN {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        System.out.println(currentRoom.getRoomDescription());
         System.out.print("From here, you can go: ");
         printDirections(currentRoom);
         String userInput = reader.readLine();
-        reader.close();
         return userInput;
     }
 
