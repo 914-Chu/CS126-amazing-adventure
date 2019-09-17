@@ -6,11 +6,18 @@ import java.net.*;
 
 public class URLConverter {
 
-    public static String getJson() throws IOException {
+    private String url;
+
+    public URLConverter(String url) {
+
+        url = "https://courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json";
+    }
+
+    public String getJson() throws IOException {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Please insert the URL: ");
-        String url = reader.readLine();
+        url = reader.readLine();
         String content =  URLReader(new URL(url));
         return content;
     }
@@ -18,7 +25,7 @@ public class URLConverter {
     // Code below derived from:
     // https://www.techiedelight.com/read-contents-of-url-into-string-java/
 
-    public static String URLReader(URL url) throws IOException {
+    public String URLReader(URL url) throws IOException {
         StringBuilder sb = new StringBuilder();
         String line;
 
