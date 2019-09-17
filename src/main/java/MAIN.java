@@ -16,7 +16,6 @@ public class MAIN {
         String startingRoom = layout.getStartingRoom();
         String endingRoom = layout.getEndingRoom();
         String userDirection;
-        String userRoomName;
         Room currentRoom = layout.findRoom(startingRoom);
         boolean status = true;
 
@@ -27,16 +26,19 @@ public class MAIN {
             System.out.print("From here, you can go: ");
             printDirections(currentRoom);
 
-            userDirection = reader.readLine();
+            try {
+                userDirection = reader.readLine();
+            }
             if(userDirection.equalsIgnoreCase("exit") || userDirection.equalsIgnoreCase("quit")) {
 
                 status = false;
+                reader.close();
             }else if(validateDirection(userDirection, currentRoom)){
 
                 currentRoom = layout.findRoom(currentRoom.getNextRoom());
             }else {
 
-                if()
+                findErrorType(userDirection);
             }
         }while(status);
 
@@ -79,5 +81,19 @@ public class MAIN {
             }
         }
         return false;
+    }
+
+    public static void findErrorType(String userDirection) {
+
+        String go = "go";
+
+        if(userDirection.charAt(0) == go.charAt(0) && userDirection.charAt(1) == go.charAt(1)) {
+
+            System.out.println("I can't go " + userDirection);
+        }else {
+
+            System.out.printf("I don't understand '%s'", userDirection);
+        }
+
     }
 }
