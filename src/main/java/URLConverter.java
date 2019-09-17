@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.*;
 
+
 public class URLConverter {
 
     public static String getJson() throws IOException {
@@ -11,7 +12,14 @@ public class URLConverter {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Please insert the URL: ");
         String url = reader.readLine();
-        return URLReader(new URL(url));
+
+        try {
+            URL Url = new URL(url);
+            return URLReader(Url);
+        }catch(MalformedURLException e) {
+
+            return "Invalid URL";
+        }
     }
 
     public static String getJson(String inputURL) throws IOException{

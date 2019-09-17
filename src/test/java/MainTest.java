@@ -17,7 +17,7 @@ public class MainTest {
     }
 
     @Test
-    public void deserializeNotNull() throws IOException {
+    public void deserializeNotNull() throws IOException, com.google.gson.JsonParseException {
 
         String content =  URLConverter.getJson(url);
         Layout layout = gson.fromJson(content, Layout.class);

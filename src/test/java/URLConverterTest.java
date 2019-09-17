@@ -12,6 +12,7 @@ public class URLConverterTest {
     public void setUp() throws Exception {
 
         url = "https://courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json";
+
     }
 
     @Test
@@ -22,6 +23,7 @@ public class URLConverterTest {
         assertNotEquals(null, content);
     }
 
+    
 }
 
 
