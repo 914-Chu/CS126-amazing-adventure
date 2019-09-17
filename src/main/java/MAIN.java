@@ -29,14 +29,19 @@ public class MAIN {
             printDirections(currentRoom);
             userInput = reader.readLine();
 
-            if(userInput.equalsIgnoreCase("exit") || userDirection.equalsIgnoreCase("quit")) {
+            if(userInput.equalsIgnoreCase("exit") || userInput.equalsIgnoreCase("quit")) {
 
                 status = false;
-            }else if(validateDirection(userDirection, currentRoom)){
+            }else if(checkInput(userInput)){
 
+                checkDirection(userInput,currentRoom);
                 currentRoom = layout.findRoom(currentRoom.getNextRoom());
                 System.out.println(currentRoom.getRoomDescription());
+            }else {
+
+                System.out.printf("I don't understand '%s'", userInput);
             }
+
         }while(status);
     }
 
@@ -65,7 +70,7 @@ public class MAIN {
         System.out.println();
     }
 
-    public static boolean validateDirection(String userInput, Room room) {
+    public static boolean checkDirection(String userInput, Room room) {
 
         String userDirection = userInput.substring(3);
         for(Direction direction : room.getDirectionsList()) {
@@ -77,22 +82,14 @@ public class MAIN {
                 return true;
             }
         }
-        findErrorType(userDirection);
+        System.out.println("I can't go" + userDirection);
         return false;
     }
 
-    public static void findErrorType(String userDirection) {
+    public static boolean checkInput(String userInput) {
 
         String go = "go";
-
-        if(userDirection.charAt(0) == go.charAt(0) && userDirection.charAt(1) == go.charAt(1)) {
-
-            System.out.println("I can't go " + userDirection);
-        }else {
-
-            System.out.printf("I don't understand '%s'", userDirection);
-        }
-
+        return(userInput.charAt(0) == go.charAt(0) && userInput.charAt(1) == go.charAt(1));
     }
 
 }
