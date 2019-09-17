@@ -14,11 +14,15 @@ public class MAIN {
         Layout layout = new Gson().fromJson(content, Layout.class);
         String startingRoom = layout.getStartingRoom();
         String endingRoom = layout.getEndingRoom();
+        Room current = layout.findRoom(startingRoom);
         boolean status = true;
 
-        System.out.println(layout.findRoom(startingRoom).getRoomDescription());
+        System.out.println(current.getRoomDescription());
+        System.out.println("Your journey begins here");
 
         do{
+            System.out.print("From here, you can go: ");
+            printDirections(current);
             
         }while(status);
 
@@ -40,5 +44,12 @@ public class MAIN {
         }
 
         return sb.toString();
+    }
+
+    public static void printDirections(Room room) {
+
+        for(Direction direction : room.getDirectionsList()) {
+            System.out.print(direction.getDirectionName());
+        }
     }
 }
