@@ -25,7 +25,7 @@ public class MAIN {
         do{
             System.out.print("From here, you can go: ");
             printDirections(currentRoom);
-            userDirection = reader.readLine();
+            userDirection = getUserInput();
 
             if(userDirection.equalsIgnoreCase("exit") || userDirection.equalsIgnoreCase("quit")) {
 
@@ -40,8 +40,6 @@ public class MAIN {
                 findErrorType(userDirection);
             }
         }while(status);
-
-
     }
 
     public static String URLReader(URL url) throws IOException {
@@ -66,6 +64,7 @@ public class MAIN {
         for(Direction direction : room.getDirectionsList()) {
             System.out.print(direction.getDirectionName());
         }
+        System.out.println();
     }
 
     public static boolean validateDirection(String userDirection, Room room) {
@@ -93,6 +92,12 @@ public class MAIN {
 
             System.out.printf("I don't understand '%s'", userDirection);
         }
+
+    }
+    
+    public static String getUserInput() {
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     }
 }
