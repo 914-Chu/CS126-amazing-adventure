@@ -81,10 +81,9 @@ public class MAIN {
 
                 String direction = directionList.get(i).getDirectionName();
                 System.out.print(direction);
-                if (room.getDirectionsList().size() > 1) {
-                    System.out.print(", ");
-                }
+                System.out.print(", ");
             }
+
         }else {
 
             System.out.println();
