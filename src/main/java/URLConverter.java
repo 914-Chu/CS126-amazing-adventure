@@ -13,18 +13,24 @@ public class URLConverter {
         System.out.println("Please insert the URL: ");
         String url = reader.readLine();
 
-        try {
-            URL Url = new URL(url);
-            return URLReader(Url);
-        }catch(MalformedURLException e) {
+        if(validateURL(url)) {
 
-            return "Invalid URL";
+            return URLReader(new URL(url));
+        }else {
+
+            return null;
         }
     }
 
     public static String getJson(String inputURL) throws IOException{
 
-        return URLReader(new URL(inputURL));
+        if(validateURL(inputURL)) {
+
+            return URLReader(new URL(inputURL));
+        }else {
+
+            return null;
+        }
     }
 
     // Code below derived from:
@@ -45,6 +51,17 @@ public class URLConverter {
         }
 
         return sb.toString();
+    }
+
+    private static boolean validateURL(String toCheck) {
+
+        try{
+            URL url = new URL(toCheck);
+            return true;
+        }catch(MalformedURLException e) {
+            System.out.println("Invalid URL");
+            return false;
+        }
     }
 
 }
