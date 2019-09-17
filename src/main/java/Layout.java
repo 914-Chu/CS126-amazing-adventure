@@ -2,7 +2,6 @@ import java.util.*;
 
 public class Layout {
 
-    private Layout() {};
     private String startingRoom;
     private String endingRoom;
     private List<Room> rooms;
