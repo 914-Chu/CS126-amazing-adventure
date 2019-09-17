@@ -16,9 +16,7 @@ public class MAIN {
         String startingRoom = layout.getStartingRoom();
         String endingRoom = layout.getEndingRoom();
         String userInput;
-        String userDirection;
         Room currentRoom = layout.findRoom(startingRoom);
-        boolean valid;
         boolean status = true;
 
         System.out.println(currentRoom.getRoomDescription());
@@ -82,7 +80,7 @@ public class MAIN {
                 return true;
             }
         }
-        System.out.println("I can't go" + userDirection);
+        System.out.println("I can't go " + userDirection);
         return false;
     }
 
