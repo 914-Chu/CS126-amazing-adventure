@@ -89,6 +89,7 @@ public class MAIN {
 
             System.out.println(directionList.get(0).getDirectionName());
         }
+        
     }
 
     public static boolean checkDirection(String userInput, Room room) {
