@@ -10,7 +10,8 @@ public class MAIN {
 
     public static void main(String[] args) throws IOException{
 
-        String content =  URLReader(new URL("https://courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json"));
+        //String content =  URLReader(new URL("https://courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json"));
+        String content = Data.getFileContents("src", "test", "test_resources", "content");
         Layout layout = new Gson().fromJson(content, Layout.class);
         String startingRoom = layout.getStartingRoom();
         String endingRoom = layout.getEndingRoom();

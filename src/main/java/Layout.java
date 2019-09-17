@@ -1,20 +1,22 @@
-import java.util.NoSuchElementException;
+import java.util.*;
 
 public class Layout {
 
+    private Layout() {};
     private String startingRoom;
     private String endingRoom;
-    private Room[] roomList;
+    private List<Room> rooms;
 
     public String getStartingRoom() { return startingRoom;}
     public String getEndingRoom() {return endingRoom;};
-    public Room[] getRoom() {return roomList;};
+    public List<Room> getRoom() {return rooms;};
 
     public Room findRoom(String room) {
 
-        for (Room r : roomList) {
+        for (Room r : rooms) {
 
-            if (r.getRoomName() == room) {
+            if (r.getRoomName().equals(room)) {
+                System.out.println("x");
                 return r;
             }
         }
