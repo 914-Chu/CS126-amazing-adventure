@@ -10,21 +10,34 @@ public class MAIN {
 
     public static void main(String[] args) throws IOException{
 
-        //String content =  URLReader(new URL("https://courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json"));
-        String content = Data.getFileContents("src", "test", "test_resources", "content");
+        String content =  URLReader(new URL("https://courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json"));
         Layout layout = new Gson().fromJson(content, Layout.class);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String startingRoom = layout.getStartingRoom();
         String endingRoom = layout.getEndingRoom();
-        Room current = layout.findRoom(startingRoom);
+        String userDirection;
+        String userRoomName;
+        Room currentRoom = layout.findRoom(startingRoom);
         boolean status = true;
 
-        System.out.println(current.getRoomDescription());
+        System.out.println(currentRoom.getRoomDescription());
         System.out.println("Your journey begins here");
 
         do{
             System.out.print("From here, you can go: ");
-            printDirections(current);
-            
+            printDirections(currentRoom);
+
+            userDirection = reader.readLine();
+            if(userDirection.equalsIgnoreCase("exit") || userDirection.equalsIgnoreCase("quit")) {
+
+                status = false;
+            }else if(validateDirection(userDirection, currentRoom)){
+
+                currentRoom = layout.findRoom(currentRoom.getNextRoom());
+            }else {
+
+                if()
+            }
         }while(status);
 
 
@@ -52,5 +65,19 @@ public class MAIN {
         for(Direction direction : room.getDirectionsList()) {
             System.out.print(direction.getDirectionName());
         }
+    }
+
+    public static boolean validateDirection(String userDirection, Room room) {
+
+
+        for(Direction direction : room.getDirectionsList()) {
+
+            String name = direction.getDirectionName();
+            if(userDirection.equalsIgnoreCase(name)) {
+                room.findNextRoom(userDirection);
+                return true;
+            }
+        }
+        return false;
     }
 }

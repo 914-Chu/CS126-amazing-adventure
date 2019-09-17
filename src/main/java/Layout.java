@@ -16,7 +16,6 @@ public class Layout {
         for (Room r : rooms) {
 
             if (r.getRoomName().equals(room)) {
-                System.out.println("x");
                 return r;
             }
         }
