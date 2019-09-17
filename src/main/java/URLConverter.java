@@ -15,6 +15,9 @@ public class URLConverter {
         return content;
     }
 
+    // Code below derived from:
+    // https://www.techiedelight.com/read-contents-of-url-into-string-java/
+
     public static String URLReader(URL url) throws IOException {
         StringBuilder sb = new StringBuilder();
         String line;
