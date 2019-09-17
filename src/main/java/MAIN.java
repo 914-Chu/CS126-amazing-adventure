@@ -12,10 +12,12 @@ public class MAIN {
 
         String content =  URLReader(new URL("https://courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json"));
         Layout layout = new Gson().fromJson(content, Layout.class);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String startingRoom = layout.getStartingRoom();
         String endingRoom = layout.getEndingRoom();
         String userDirection;
         Room currentRoom = layout.findRoom(startingRoom);
+        boolean valid;
         boolean status = true;
 
         System.out.println(currentRoom.getRoomDescription());
@@ -24,7 +26,7 @@ public class MAIN {
         do{
             System.out.print("From here, you can go: ");
             printDirections(currentRoom);
-            userDirection = getUserInput();
+            userDirection = reader.readLine();
 
             if(userDirection.equalsIgnoreCase("exit") || userDirection.equalsIgnoreCase("quit")) {
 
@@ -33,9 +35,7 @@ public class MAIN {
 
                 currentRoom = layout.findRoom(currentRoom.getNextRoom());
                 System.out.println(currentRoom.getRoomDescription());
-            }else {
 
-                findErrorType(userDirection);
             }
         }while(status);
     }
@@ -60,7 +60,7 @@ public class MAIN {
     public static void printDirections(Room room) {
 
         for(Direction direction : room.getDirectionsList()) {
-            System.out.print(direction.getDirectionName());
+            System.out.print(direction.getDirectionName() + " ");
         }
         System.out.println();
     }
@@ -74,6 +74,8 @@ public class MAIN {
             if(userDirection.equalsIgnoreCase(name)) {
                 room.findNextRoom(userDirection);
                 return true;
+            }else {
+                findErrorType(userDirection);
             }
         }
         return false;
@@ -97,8 +99,9 @@ public class MAIN {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String userInput = reader.readLine();
+        String direction = userInput.substring(3);
         reader.close();
 
-        return userInput;
+        return direction;
     }
 }
