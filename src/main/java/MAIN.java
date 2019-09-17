@@ -73,13 +73,23 @@ public class MAIN {
 
     public static void printDirections(Room room) {
 
-        for(Direction direction : room.getDirectionsList()) {
+        int listSize =  room.getDirectionsList().size();
+        List<Direction> directionList = room.getDirectionsList();
+        if(listSize > 1) {
 
-            System.out.print(direction.getDirectionName());
-            if(room.getDirectionsList().size()>1) {
-                System.out.print(", ");
+            for (int i = 0; i < listSize - 1; i++) {
+
+                String direction = directionList.get(i).getDirectionName();
+                System.out.print(direction);
+                if (room.getDirectionsList().size() > 1) {
+                    System.out.print(", ");
+                }
             }
+        }else {
+
+            System.out.println();
         }
+        System.out.println();
         System.out.println();
     }
 
