@@ -96,10 +96,10 @@ public class MAIN {
         String userDirection = userInput.substring(3);
         for(Direction direction : room.getDirectionsList()) {
 
-            String name = direction.getDirectionName();
-            if(userDirection.equalsIgnoreCase(name)) {
+            String directionsInList = direction.getDirectionName();
+            if(userDirection.equalsIgnoreCase(directionsInList)) {
 
-                room.findNextRoom(userDirection);
+                room.findNextRoom(directionsInList);
                 return true;
             }
         }
