@@ -12,7 +12,6 @@ public class MAIN {
 
         String content =  URLReader(new URL("https://courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json"));
         Layout layout = new Gson().fromJson(content, Layout.class);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String startingRoom = layout.getStartingRoom();
         String endingRoom = layout.getEndingRoom();
         String userDirection;
@@ -30,7 +29,6 @@ public class MAIN {
             if(userDirection.equalsIgnoreCase("exit") || userDirection.equalsIgnoreCase("quit")) {
 
                 status = false;
-                reader.close();
             }else if(validateDirection(userDirection, currentRoom)){
 
                 currentRoom = layout.findRoom(currentRoom.getNextRoom());
@@ -94,10 +92,13 @@ public class MAIN {
         }
 
     }
-    
-    public static String getUserInput() {
+
+    public static String getUserInput() throws IOException{
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String userInput = reader.readLine();
+        reader.close();
 
+        return userInput;
     }
 }
