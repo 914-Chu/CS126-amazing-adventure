@@ -10,7 +10,7 @@ public class MainTest {
     @Test
     public void deserializeNotNull() throws IOException {
 
-        String content =  MAIN.URLReader(new URL("https://courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json"));
+        String content =  Main.URLReader(new URL("https://courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json"));
         Layout layout = new Gson().fromJson(content, Layout.class);
         assertNotEquals(null, layout);
     }
@@ -20,3 +20,4 @@ public class MainTest {
 
     }
 }
+

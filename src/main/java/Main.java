@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 import java.net.*;
 
-public class MAIN {
+public class Main {
 
     public static void main(String[] args) throws IOException{
 
@@ -16,31 +16,36 @@ public class MAIN {
         String endingRoom = layout.getEndingRoom();
         String userInput;
         Room currentRoom = layout.findRoom(startingRoom);
-        boolean starting =true;
-        boolean status = true;
+        boolean start =true;
+        boolean end = false;
 
         do{
             System.out.println(currentRoom.getRoomDescription());
-            if(starting) {
+            if(start) {
                 System.out.println("Your journey begins here");
-                starting = false;
+                start = false;
             }
             userInput = getUserInput(currentRoom);
 
             if(userInput.equalsIgnoreCase("exit") || userInput.equalsIgnoreCase("quit")) {
 
-                status = false;
+                end = true;
             }else if(checkInput(userInput)){
 
                 if(checkDirection(userInput,currentRoom)) {
                     currentRoom = layout.findRoom(currentRoom.getNextRoom());
+                    if(checkEnd(currentRoom, endingRoom)) {
+
+                        end = true;
+                        System.out.println("You've reached the ending room, thank you for playing.");
+                    };
                 }
             }else {
 
                 System.out.printf("I don't understand '%s'\n", userInput);
             }
 
-        }while(status);
+        }while(!end);
     }
 
     public static String URLReader(URL url) throws IOException {
@@ -105,6 +110,11 @@ public class MAIN {
         }
         System.out.println("I can't go " + userDirection);
         return false;
+    }
+
+    public static boolean checkEnd(Room currentRoom, String endingRoom) {
+
+        return currentRoom.getRoomName().equalsIgnoreCase(endingRoom);
     }
 
     public static boolean checkInput(String userInput) {
