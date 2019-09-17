@@ -12,29 +12,26 @@ public class MAIN {
 
         String content =  URLReader(new URL("https://courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json"));
         Layout layout = new Gson().fromJson(content, Layout.class);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String startingRoom = layout.getStartingRoom();
         String endingRoom = layout.getEndingRoom();
         String userInput;
         Room currentRoom = layout.findRoom(startingRoom);
+        boolean starting =true;
         boolean status = true;
 
-        System.out.println(currentRoom.getRoomDescription());
-        System.out.println("Your journey begins here");
-
         do{
-            System.out.print("From here, you can go: ");
-            printDirections(currentRoom);
-            userInput = reader.readLine();
+            userInput = getUserInput(currentRoom);
+            if(starting) { System.out.println("Your journey begins here"); }
 
             if(userInput.equalsIgnoreCase("exit") || userInput.equalsIgnoreCase("quit")) {
 
                 status = false;
             }else if(checkInput(userInput)){
 
-                checkDirection(userInput,currentRoom);
-                currentRoom = layout.findRoom(currentRoom.getNextRoom());
-                System.out.println(currentRoom.getRoomDescription());
+                if(checkDirection(userInput,currentRoom)) {
+                    currentRoom = layout.findRoom(currentRoom.getNextRoom());
+                    System.out.println(currentRoom.getRoomDescription());
+                }
             }else {
 
                 System.out.printf("I don't understand '%s'", userInput);
@@ -60,10 +57,26 @@ public class MAIN {
         return sb.toString();
     }
 
+    public static String getUserInput(Room currentRoom) throws IOException{
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.println(currentRoom.getRoomDescription());
+        System.out.print("From here, you can go: ");
+        printDirections(currentRoom);
+        String userInput = reader.readLine();
+        reader.close();
+        return userInput;
+    }
+
     public static void printDirections(Room room) {
 
         for(Direction direction : room.getDirectionsList()) {
-            System.out.print(direction.getDirectionName() + " ");
+
+            System.out.print(direction.getDirectionName());
+            if(room.getDirectionsList().size()>1) {
+                System.out.print(", ");
+            }
         }
         System.out.println();
     }
@@ -87,7 +100,8 @@ public class MAIN {
     public static boolean checkInput(String userInput) {
 
         String go = "go";
-        return(userInput.charAt(0) == go.charAt(0) && userInput.charAt(1) == go.charAt(1));
+        String toLowerCase = userInput.toLowerCase();
+        return(toLowerCase.charAt(0) == go.charAt(0) && toLowerCase.charAt(1) == go.charAt(1));
     }
 
 }
