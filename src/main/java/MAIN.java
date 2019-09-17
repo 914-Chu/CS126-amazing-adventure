@@ -25,10 +25,8 @@ public class MAIN {
         do{
             System.out.print("From here, you can go: ");
             printDirections(currentRoom);
+            userDirection = reader.readLine();
 
-            try {
-                userDirection = reader.readLine();
-            }
             if(userDirection.equalsIgnoreCase("exit") || userDirection.equalsIgnoreCase("quit")) {
 
                 status = false;
@@ -36,6 +34,7 @@ public class MAIN {
             }else if(validateDirection(userDirection, currentRoom)){
 
                 currentRoom = layout.findRoom(currentRoom.getNextRoom());
+                System.out.println(currentRoom.getRoomDescription());
             }else {
 
                 findErrorType(userDirection);
