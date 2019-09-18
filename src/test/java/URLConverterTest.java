@@ -3,7 +3,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.net.URL;
 
 public class URLConverterTest {
 
@@ -13,7 +12,6 @@ public class URLConverterTest {
     public void setUp() throws Exception {
 
         url = "https://courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json";
-
     }
 
     @Test
@@ -27,7 +25,7 @@ public class URLConverterTest {
     @Test
     public void testInvalidURL() throws IOException{
 
-        String wrongURL = "courses.grainger.illinois.edu/cs126/fa2019/assignments";
+        String wrongURL = "https://courses.       grainger.illinois.edu/cs126/fa2019/assignments/siebel.json";
         String content = URLConverter.getJson(wrongURL);
         System.out.println(content);
         assertEquals(null, content);

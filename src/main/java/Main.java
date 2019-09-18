@@ -34,10 +34,14 @@ public class Main {
                 isEnd = true;
             }else if(checkInput(userInput)){
 
-                if(checkDirection(userInput,currentRoom)) {
+                int afterGo = 3;
+                String userDirection = userInput.substring(afterGo);
+
+                if(checkDirection(userDirection,currentRoom)) {
 
                     currentRoom = layout.findRoom(currentRoom.getNextRoom());
-                    isEnd = checkEnd(currentRoom, endingRoom);
+                    String currentRoomName = currentRoom.getRoomName();
+                    isEnd = checkEnd(currentRoomName, endingRoom);
                 }
             }else {
 
@@ -47,17 +51,49 @@ public class Main {
         }while(!isEnd);
     }
 
-    public static String getUserInput(Room currentRoom) throws IOException{
+    public static boolean checkInput(String userInput) {
+
+        String go = "go";
+        String toLowerCase = userInput.toLowerCase();
+        return(toLowerCase.charAt(0) == go.charAt(0) && toLowerCase.charAt(1) == go.charAt(1));
+    }
+
+    public static boolean checkDirection(String userDirection, Room room) {
+
+        for(Direction direction : room.getDirectionsList()) {
+
+            String directionsInList = direction.getDirectionName();
+            if(userDirection.equalsIgnoreCase(directionsInList)) {
+
+                room.findNextRoom(directionsInList);
+                return true;
+            }
+        }
+        System.out.println("I can't go " + userDirection);
+        return false;
+    }
+
+    public static boolean checkEnd(String currentRoomName, String endingRoom) {
+
+        boolean isEnd = currentRoomName.equalsIgnoreCase(endingRoom);
+
+        if(isEnd) {
+            System.out.printf("You've reached the ending room %s, thank you for playing.\n", endingRoom);
+        }
+
+        return isEnd;
+    }
+
+    private static String getUserInput(Room currentRoom) throws IOException{
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.print("From here, you can go: ");
         printDirections(currentRoom);
-        String userInput = reader.readLine();
-        return userInput;
+        return reader.readLine();
     }
 
-    public static void printDirections(Room room) {
+    private static void printDirections(Room room) {
 
         int listSize =  room.getDirectionsList().size();
         List<Direction> directionList = room.getDirectionsList();
@@ -77,39 +113,4 @@ public class Main {
             System.out.println(directionList.get(0).getDirectionName());
         }
     }
-
-    public static boolean checkDirection(String userInput, Room room) {
-
-        String userDirection = userInput.substring(3);
-        for(Direction direction : room.getDirectionsList()) {
-
-            String directionsInList = direction.getDirectionName();
-            if(userDirection.equalsIgnoreCase(directionsInList)) {
-
-                room.findNextRoom(directionsInList);
-                return true;
-            }
-        }
-        System.out.println("I can't go " + userDirection);
-        return false;
-    }
-
-    public static boolean checkEnd(Room currentRoom, String endingRoom) {
-
-        boolean isEnd = currentRoom.getRoomName().equalsIgnoreCase(endingRoom);
-
-        if(isEnd) {
-            System.out.println("You've reached the ending room, thank you for playing.");
-        }
-
-        return isEnd;
-    }
-
-    public static boolean checkInput(String userInput) {
-
-        String go = "go";
-        String toLowerCase = userInput.toLowerCase();
-        return(toLowerCase.charAt(0) == go.charAt(0) && toLowerCase.charAt(1) == go.charAt(1));
-    }
-
 }

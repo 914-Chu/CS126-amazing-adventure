@@ -53,15 +53,15 @@ public class URLConverter {
         return sb.toString();
     }
 
+    // Code below derived from:
+    // https://www.geeksforgeeks.org/check-if-url-is-valid-or-not-in-java/
+
     private static boolean validateURL(String toCheck) {
 
         try{
             URI url = new URL(toCheck).toURI();
             return true;
-        }catch(MalformedURLException e) {
-            System.out.println("Invalid URL");
-            return false;
-        }catch(URISyntaxException e) {
+        }catch(MalformedURLException | URISyntaxException e) {
             System.out.println("Invalid URL");
             return false;
         }
