@@ -37,5 +37,14 @@ public class LayoutTest {
 
     @Test
     public void testFindRoom() {
+
+        int randomIndex = rand.nextInt(roomList.size());
+        String expectName = roomList.get(randomIndex).getRoomName();
+        String actualName = layout.findRoom(expectName).getRoomName();
+        assertEquals(expectName, actualName);
+    }
+
+    @Test
+    public void name() {
     }
 }
