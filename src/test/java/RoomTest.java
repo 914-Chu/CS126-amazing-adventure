@@ -6,7 +6,6 @@ import java.util.*;
 
 public class RoomTest {
 
-    private String url;
     private String content;
     private Gson gson;
     private Layout layout;
@@ -16,7 +15,7 @@ public class RoomTest {
     @Before
     public void setUp() throws Exception {
 
-        url = "https://courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json";
+        String url = "https://courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json";
         gson = new Gson();
         content =  URLConverter.getJson(url);
         layout = gson.fromJson(content, Layout.class);
@@ -64,7 +63,7 @@ public class RoomTest {
         int directionSize = room.getDirectionsList().size();
         int randomIndex1 = rand.nextInt(directionSize);
         Direction direction = room.getDirectionsList().get(randomIndex1);
-        
+
         room.findNextRoom(direction.getDirectionName());
         String expect = direction.getRoomInDirection();
 
