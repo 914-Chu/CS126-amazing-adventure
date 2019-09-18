@@ -4,8 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 import java.util.*;
 
-import java.io.IOException;
-
 public class MainTest {
 
     private String url;
@@ -26,7 +24,7 @@ public class MainTest {
     }
 
     @Test
-    public void deserializeNotNull() throws IOException, com.google.gson.JsonParseException {
+    public void deserializeNotNull() throws com.google.gson.JsonParseException {
 
         assertNotEquals(null, layout);
     }
@@ -39,7 +37,7 @@ public class MainTest {
     }
 
     @Test
-    public void testCheckDirection() throws Exception {
+    public void testCheckDirection() {
 
         int roomSize = roomList.size();
         int randomIndex = rand.nextInt(roomSize);
@@ -59,9 +57,24 @@ public class MainTest {
         String expect = "Siebel1314";
         String unexpect = "SiebelNorthHallway";
         String endingRoom = layout.getEndingRoom();
-        
+
         assertEquals(true, Main.checkEnd(expect, endingRoom));
         assertEquals(false, Main.checkEnd(unexpect, endingRoom));
+    }
+
+    @Test
+    public void testExitQuit() {
+
+        String leave1 = "QuiT";
+        String leave2 = "EXit";
+
+        int roomSize = roomList.size();
+        int randomIndex = rand.nextInt(roomSize);
+        String stay = roomList.get(randomIndex).getRoomName();
+
+        assertEquals(true, Main.leave(leave1));
+        assertEquals(true, Main.leave(leave2));
+        assertEquals(false, Main.leave(stay));
     }
 }
 

@@ -29,7 +29,7 @@ public class Main {
             }
             userInput = getUserInput(currentRoom);
 
-            if(userInput.equalsIgnoreCase("exit") || userInput.equalsIgnoreCase("quit")) {
+            if(leave(userInput)) {
 
                 isEnd = true;
             }else if(checkInput(userInput)){
@@ -82,6 +82,11 @@ public class Main {
         }
 
         return isEnd;
+    }
+
+    public static boolean leave(String userInput) {
+
+        return userInput.equalsIgnoreCase("exit") || userInput.equalsIgnoreCase("quit");
     }
 
     private static String getUserInput(Room currentRoom) throws IOException{
