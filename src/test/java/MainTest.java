@@ -30,7 +30,7 @@ public class MainTest {
     public void testCheckInput() {
 
         String beginWithoutGo = "akdj;le go akj";
-        assertEquals(false, Main.checkInput(beginWithoutGo));
+        assertFalse(Main.checkInput(beginWithoutGo));
     }
 
     @Test
@@ -44,8 +44,8 @@ public class MainTest {
         int randomIndex1 = rand.nextInt(directionSize);
         String direction = room.getDirectionsList().get(randomIndex1).getDirectionName();
 
-        assertEquals(true, Main.checkDirection(direction, room));
-        assertEquals(false, Main.checkDirection("somewhere", room));
+        assertTrue(Main.checkDirection(direction, room));
+        assertFalse(Main.checkDirection("somewhere", room));
     }
 
     @Test
@@ -55,8 +55,8 @@ public class MainTest {
         String notEnd = "SiebelNorthHallway";
         String endingRoom = layout.getEndingRoom();
 
-        assertEquals(true, Main.checkEnd(isEnd, endingRoom));
-        assertEquals(false, Main.checkEnd(notEnd, endingRoom));
+        assertTrue(Main.checkEnd(isEnd, endingRoom));
+        assertFalse(Main.checkEnd(notEnd, endingRoom));
     }
 
     @Test
@@ -69,9 +69,9 @@ public class MainTest {
         int randomIndex = rand.nextInt(roomSize);
         String stay = roomList.get(randomIndex).getRoomName();
 
-        assertEquals(true, Main.leave(leave1));
-        assertEquals(true, Main.leave(leave2));
-        assertEquals(false, Main.leave(stay));
+        assertTrue(Main.leave(leave1));
+        assertTrue(Main.leave(leave2));
+        assertFalse(Main.leave(stay));
     }
 }
 

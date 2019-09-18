@@ -43,7 +43,7 @@ public class LayoutTest {
         Room roomNotFount = layout.findRoom(unexpectName);
 
         assertEquals(expectName, actualName);
-        assertEquals(null, roomNotFount);
+        assertNull(roomNotFount);
     }
 
     @Test

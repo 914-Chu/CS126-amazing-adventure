@@ -9,7 +9,7 @@ public class URLConverterTest {
     private String url;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
 
         url = "https://courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json";
     }
@@ -19,7 +19,7 @@ public class URLConverterTest {
 
         String content =  URLConverter.getJson(url);
         System.out.println(content);
-        assertNotEquals(null, content);
+        assertNotNull(content);
     }
 
     @Test
@@ -28,7 +28,7 @@ public class URLConverterTest {
         String wrongURL = "https://courses.       grainger.illinois.edu/cs126/fa2019/assignments/siebel.json";
         String content = URLConverter.getJson(wrongURL);
         System.out.println(content);
-        assertEquals(null, content);
+        assertNull(content);
     }
 }
 

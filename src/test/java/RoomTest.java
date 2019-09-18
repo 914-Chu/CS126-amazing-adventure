@@ -6,19 +6,16 @@ import java.util.*;
 
 public class RoomTest {
 
-    private String content;
-    private Gson gson;
-    private Layout layout;
     private List<Room> roomList;
-    Random rand = new Random();
+    private Random rand = new Random();
 
     @Before
     public void setUp() throws Exception {
 
         String url = "https://courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json";
-        gson = new Gson();
-        content =  URLConverter.getJson(url);
-        layout = gson.fromJson(content, Layout.class);
+        Gson gson = new Gson();
+        String content = URLConverter.getJson(url);
+        Layout layout = gson.fromJson(content, Layout.class);
         roomList = layout.getRoom();
     }
 
