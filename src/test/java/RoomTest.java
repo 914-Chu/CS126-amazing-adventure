@@ -54,5 +54,20 @@ public class RoomTest {
         assertEquals(expectSize, actualSize);
     }
 
-    
+    @Test
+    public void testFindNextRoom() {
+
+        int roomSize = roomList.size();
+        int randomIndex = rand.nextInt(roomSize);
+        Room room = roomList.get(randomIndex);
+
+        int directionSize = room.getDirectionsList().size();
+        int randomIndex1 = rand.nextInt(directionSize);
+        Direction direction = room.getDirectionsList().get(randomIndex1);
+        
+        room.findNextRoom(direction.getDirectionName());
+        String expect = direction.getRoomInDirection();
+
+        assertEquals(expect, room.getNextRoom());
+    }
 }
