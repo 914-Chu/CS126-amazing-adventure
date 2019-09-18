@@ -27,7 +27,7 @@ public class URLConverterTest {
     @Test
     public void testInvalidURL() throws IOException{
 
-        String wrongURL = "https://courses.grainger.illinois.edu/cs126/fa2019/assignments";
+        String wrongURL = "courses.grainger.illinois.edu/cs126/fa2019/assignments";
         String content = URLConverter.getJson(wrongURL);
         System.out.println(content);
         assertEquals(null, content);

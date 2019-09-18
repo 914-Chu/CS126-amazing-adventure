@@ -10,6 +10,9 @@ public class Main {
 
 
         String json =  URLConverter.getJson();
+        if(json == null) {
+            return;
+        }
         Layout layout = new Gson().fromJson(json, Layout.class);
         String startingRoom = layout.getStartingRoom();
         String endingRoom = layout.getEndingRoom();

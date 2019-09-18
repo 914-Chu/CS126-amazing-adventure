@@ -56,9 +56,12 @@ public class URLConverter {
     private static boolean validateURL(String toCheck) {
 
         try{
-            URL url = new URL(toCheck);
+            URI url = new URL(toCheck).toURI();
             return true;
         }catch(MalformedURLException e) {
+            System.out.println("Invalid URL");
+            return false;
+        }catch(URISyntaxException e) {
             System.out.println("Invalid URL");
             return false;
         }
