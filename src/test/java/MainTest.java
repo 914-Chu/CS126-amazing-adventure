@@ -54,12 +54,12 @@ public class MainTest {
     @Test
     public void testCheckEnd() {
 
-        String expect = "Siebel1314";
-        String unexpect = "SiebelNorthHallway";
+        String isEnd = "Siebel1314";
+        String notEnd = "SiebelNorthHallway";
         String endingRoom = layout.getEndingRoom();
 
-        assertEquals(true, Main.checkEnd(expect, endingRoom));
-        assertEquals(false, Main.checkEnd(unexpect, endingRoom));
+        assertEquals(true, Main.checkEnd(isEnd, endingRoom));
+        assertEquals(false, Main.checkEnd(notEnd, endingRoom));
     }
 
     @Test

@@ -23,5 +23,36 @@ public class RoomTest {
         roomList = layout.getRoom();
     }
 
+    @Test
+    public void testGetName() {
 
+        String actual = roomList.get(3).getRoomName();
+        String expect = "SiebelNorthHallway";
+        assertEquals(expect, actual);
+    }
+
+    @Test
+    public void testGetDescription() {
+
+        String actual = roomList.get(6).getRoomDescription();
+        String expect = "You are in Siebel 1314.  There are happy CS 126 students doing a code review.";
+        assertEquals(expect, actual);
+    }
+
+    @Test
+    public void testDirectionListSize() {
+
+        int randomIndex = rand.nextInt(roomList.size());
+        List<Direction> directionList = roomList.get(randomIndex).getDirectionsList();
+
+        int actualSize = 0;
+        int expectSize = directionList.size();
+        for(Direction direction : directionList) {
+            actualSize++;
+        }
+
+        assertEquals(expectSize, actualSize);
+    }
+
+    
 }
