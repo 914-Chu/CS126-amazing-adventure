@@ -41,10 +41,23 @@ public class LayoutTest {
         int randomIndex = rand.nextInt(roomList.size());
         String expectName = roomList.get(randomIndex).getRoomName();
         String actualName = layout.findRoom(expectName).getRoomName();
+
+        String unexpectName = "ad;lfkje";
+        Room roomNotFount = layout.findRoom(unexpectName);
+
         assertEquals(expectName, actualName);
+        assertEquals(null, roomNotFount);
     }
 
     @Test
-    public void name() {
+    public void testRoomListSize() {
+
+        int actualSize = 0;
+        int expectSize = roomList.size();
+        for(Room room : roomList) {
+            actualSize++;
+        }
+
+        assertEquals(expectSize, actualSize);
     }
 }
