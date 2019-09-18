@@ -13,7 +13,7 @@ public class Room {
     public List<String> getItemsList() {return items;}
     public List<Direction> getDirectionsList() {return directions;}
     public String getNextRoom() {return nextRoom;}
-    
+
     public void findNextRoom(String userDirection) {
 
         for(Direction direction : directions) {

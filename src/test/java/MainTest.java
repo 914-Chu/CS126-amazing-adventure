@@ -21,6 +21,12 @@ public class MainTest {
     }
 
     @Test
+    public void deserializeCheckObject() {
+
+        assertTrue(layout instanceof Layout);
+    }
+
+    @Test
     public void deserializeNotNull() throws com.google.gson.JsonParseException {
 
         assertNotEquals(null, layout);
