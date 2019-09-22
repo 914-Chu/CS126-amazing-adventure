@@ -1,8 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.imageio.IIOException;
-
 import java.io.IOException;
 
 import static org.junit.Assert.*;
@@ -11,7 +9,7 @@ public class InputTest {
 
     Input input;
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
 
         input = new Input();
     }
@@ -45,6 +43,7 @@ public class InputTest {
         assertFalse(input.isValidPath(invalidPath));
     }
 
+    //Unsolved: Different schema
     @Test
     public void testIsValidJson() {
 

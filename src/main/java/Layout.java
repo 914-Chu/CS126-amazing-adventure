@@ -5,10 +5,12 @@ public class Layout {
     private String startingRoom;
     private String endingRoom;
     private List<Room> rooms;
+    private Player player;
 
     public String getStartingRoom() { return startingRoom;}
-    public String getEndingRoom() {return endingRoom;};
-    public List<Room> getRoom() {return rooms;};
+    public String getEndingRoom() {return endingRoom;}
+    public List<Room> getRoomList() {return rooms;}
+    public Player getPlayer() {return player;}
 
     public Room findRoom(String room) {
 

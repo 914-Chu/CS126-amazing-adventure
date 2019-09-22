@@ -70,10 +70,15 @@ public class Input {
         try {
 
             gson.fromJson(json, Object.class);
+           // Layout layout = gson.fromJson(json, Layout.class);
             return true;
         } catch(com.google.gson.JsonSyntaxException e) {
 
             System.err.println("The form of Json is invalid");
+            return false;
+        }catch(com.google.gson.JsonParseException e) {
+
+            System.err.println("The schema of Json is invalid");
             return false;
         }
     }
