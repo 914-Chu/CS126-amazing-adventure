@@ -35,8 +35,8 @@ public class MainTest {
     @Test
     public void testCheckInput() {
 
-        String beginWithoutGo = "akdj;le go akj";
-        assertFalse(Main.checkInput(beginWithoutGo));
+        assertFalse(Main.checkInput("akdj;le go akj"));
+        assertFalse(Main.checkInput("gopher"));
     }
 
     @Test

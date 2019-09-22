@@ -53,9 +53,9 @@ public class Main {
 
     public static boolean checkInput(String userInput) {
 
-        String go = "go";
-        String toLowerCase = userInput.toLowerCase();
-        return(toLowerCase.charAt(0) == go.charAt(0) && toLowerCase.charAt(1) == go.charAt(1));
+        String go = "go ";
+        String toLowerCase = userInput.toLowerCase().substring(go.length());
+        return(toLowerCase == go);
     }
 
     public static boolean checkDirection(String userDirection, Room room) {
