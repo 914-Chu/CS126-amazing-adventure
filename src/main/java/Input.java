@@ -2,26 +2,32 @@ import java.io.IOException;
 import java.net.*;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
-import java.util.*;
+import com.google.gson.Gson;
 
 public class Input {
 
     public String processInput(String input) throws IOException{
+
+        String json;
 
         if(isValidPath(input)) {
 
             String path[] = input.split("\\\\");
             int firstPath = 0;
             int secondPath = 1;
-
-            return Data.getFileContents(path[firstPath],path[secondPath]);
+            json = Data.getFileContents(path[firstPath],path[secondPath]);
+            if(isValidJson(json)) {
+                return json;
+            }
         }else if(isValidURL(input)) {
 
-            return URLConverter.getJson(input);
-        }else {
-
-            return null;
+            json = URLConverter.getJson(input);
+            if(isValidJson(json)) {
+                return json;
+            }
         }
+
+        return null;
     }
 
     public boolean isValidURL(String toCheck) {
@@ -53,5 +59,17 @@ public class Input {
         }
     }
 
+    public boolean isValidJson(String json) {
 
+       Gson gson = new Gson();
+        try {
+
+            gson.fromJson(json, Object.class);
+            return true;
+        } catch(com.google.gson.JsonSyntaxException e) {
+
+            System.err.println("Invalid Json");
+            return false;
+        }
+    }
 }

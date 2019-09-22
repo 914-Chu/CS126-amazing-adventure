@@ -14,18 +14,29 @@ public class InputTest {
     @Test
     public void testIsValidURL() {
 
-        String goodURL = "https://courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json";
-        String badURL = "https://forums";
-        assertTrue(input.isValidURL(goodURL));
-        assertFalse(input.isValidURL(badURL));
+        String validURL = "https://courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json";
+        String invalidFormURL = "courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json";
+        String invalidConnectionURL = "https://forums";
+        assertTrue(input.isValidURL(validURL));
+        assertFalse(input.isValidURL(invalidFormURL));
+        assertFalse(input.isValidURL(invalidConnectionURL));
     }
 
     @Test
     public void testIsValidPath() {
 
-        String goodPath = "test_resources\\content";
-        String badPath = "src\test\\test_resources";
-        assertTrue(input.isValidPath(goodPath));
-        assertFalse(input.isValidPath(badPath));
+        String validPath = "test_resources\\content";
+        String invalidPath = "src\test\\test_resources";
+        assertTrue(input.isValidPath(validPath));
+        assertFalse(input.isValidPath(invalidPath));
+    }
+
+    @Test
+    public void testIsValidJson() {
+
+        String validJson = "{\"status\": \"UP\"}";
+        String invalidJson = "ldakjpole";
+        assertTrue(input.isValidJson(validJson));
+        assertFalse(input.isValidJson(invalidJson));
     }
 }

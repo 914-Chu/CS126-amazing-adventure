@@ -8,11 +8,19 @@ public class Main {
 
     public static void main(String[] args) throws IOException{
 
+        Input input = new Input();
+        if(args.length != 1) {
 
-        String json =  URLConverter.getJson(args[0]);
-        if(json == null) {
+            System.err.println("Invalid program argument.");
             return;
         }
+        String json =  input.processInput(args[0]);
+        if(json == null) {
+
+            System.err.println("Json parsing failed");
+            return;
+        }
+
         Layout layout = new Gson().fromJson(json, Layout.class);
         String startingRoom = layout.getStartingRoom();
         String endingRoom = layout.getEndingRoom();
