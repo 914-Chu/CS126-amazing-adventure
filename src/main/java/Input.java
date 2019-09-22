@@ -38,10 +38,12 @@ public class Input {
             conn.connect();
             return true;
         }catch(MalformedURLException e) {
-            System.out.println("The URL is not in a valid form");
+
+            System.err.println("The URL is not in a valid form");
             return false;
         }catch(IOException e) {
-            System.out.println("The connection couldn't be established");
+
+            System.err.println("The connection couldn't be established");
             return false;
         }
     }
@@ -51,24 +53,27 @@ public class Input {
 
     public boolean isValidPath(String path) {
         try {
+
             Paths.get(path);
             String paths[] = path.split("\\\\");
             return paths.length == 2;
         } catch (InvalidPathException | NullPointerException e) {
+
+            System.err.println("The file path is invalid");
             return false;
         }
     }
 
     public boolean isValidJson(String json) {
 
-       Gson gson = new Gson();
+        Gson gson = new Gson();
         try {
 
             gson.fromJson(json, Object.class);
             return true;
         } catch(com.google.gson.JsonSyntaxException e) {
 
-            System.err.println("Invalid Json");
+            System.err.println("The form of Json is invalid");
             return false;
         }
     }

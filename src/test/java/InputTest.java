@@ -1,5 +1,10 @@
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.imageio.IIOException;
+
+import java.io.IOException;
+
 import static org.junit.Assert.*;
 
 public class InputTest {
@@ -9,6 +14,15 @@ public class InputTest {
     public void setUp() throws Exception {
 
         input = new Input();
+    }
+
+    @Test
+    public void testProcessInputIsNull() throws IOException {
+
+        String invalidInput = "\\\\em;ladsjfole;;";
+        String nothing = "";
+        assertNull(input.processInput(invalidInput));
+        assertNull(input.processInput(nothing));
     }
 
     @Test
@@ -35,7 +49,7 @@ public class InputTest {
     public void testIsValidJson() {
 
         String validJson = "{\"status\": \"UP\"}";
-        String invalidJson = "ldakjpole";
+        String invalidJson = "\"status\": \"UP\"}";
         assertTrue(input.isValidJson(validJson));
         assertFalse(input.isValidJson(invalidJson));
     }
