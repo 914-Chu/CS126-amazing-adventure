@@ -7,30 +7,9 @@ import java.net.*;
 
 public class URLConverter {
 
-    public static String getJson() throws IOException {
-
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Please insert the URL: ");
-        String url = reader.readLine();
-
-        if(validateURL(url)) {
-
-            return URLReader(new URL(url));
-        }else {
-
-            return null;
-        }
-    }
-
     public static String getJson(String inputURL) throws IOException{
 
-        if(validateURL(inputURL)) {
-
-            return URLReader(new URL(inputURL));
-        }else {
-
-            return null;
-        }
+        return URLReader(new URL(inputURL));
     }
 
     // Code below derived from:
@@ -51,20 +30,6 @@ public class URLConverter {
         }
 
         return sb.toString();
-    }
-
-    // Code below derived from:
-    // https://www.geeksforgeeks.org/check-if-url-is-valid-or-not-in-java/
-
-    private static boolean validateURL(String toCheck) {
-
-        try{
-            URI url = new URL(toCheck).toURI();
-            return true;
-        }catch(MalformedURLException | URISyntaxException e) {
-            System.out.println("Invalid URL");
-            return false;
-        }
     }
 
 }
