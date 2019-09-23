@@ -38,11 +38,7 @@ public class Layout {
 
     public static List<Direction> findDirections(Room room) {
 
-        List<Direction> directionList = new ArrayList<>();
-        for(Direction direction : room.getDirectionsList()){
-            directionList.add(direction);
-        }
-        return directionList;
+        return new ArrayList<>(room.getDirectionsList());
     }
 
     public void setNextRoomName(String nextRoomName) {

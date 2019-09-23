@@ -11,7 +11,7 @@
           "directionName": "East",
           "room": "SiebelEntry",
           "enabled": false,
-          "validKeyNames": ["ID"]
+          "validKeyNames": ["ID","Ticket"]
         }
       ]
     },
@@ -30,19 +30,19 @@
           "directionName": "Northeast",
           "room": "AcmOffice",
           "enabled": false,
-          "validKeyNames": ["ID"]
+          "validKeyNames": ["ID", "Shoe"]
         },
         {
           "directionName": "North",
           "room": "SiebelNorthHallway",
-          "enabled": false,
-          "validKeyNames": ["ID"]
+          "enabled": true,
+          "validKeyNames": []
         },
         {
           "directionName": "East",
           "room": "SiebelEastHallway",
           "enabled": false,
-          "validKeyNames": ["ID"]
+          "validKeyNames": ["ID", "Backpack", "Phone"]
         }
       ]
     },
@@ -55,7 +55,7 @@
           "directionName": "South",
           "room": "SiebelEntry",
           "enabled": false,
-          "validKeyNames":["ID"]
+          "validKeyNames":["ID", "Ring"]
         }
       ]
     },
@@ -67,13 +67,13 @@
           "directionName": "South",
           "room": "SiebelEntry",
           "enabled": false,
-          "validKeyNames": ["ID"]
+          "validKeyNames": ["ID", "Nametag"]
         },
         {
           "directionName": "NorthEast",
           "room": "Siebel1112",
-          "enabled": false,
-          "validKeyNames": ["ID"]
+          "enabled": true,
+          "validKeyNames": []
         }
       ]
     },
@@ -86,7 +86,7 @@
           "directionName": "West",
           "room": "SiebelNorthHallway",
           "enabled": false,
-          "validKeyNames": ["ID"]
+          "validKeyNames": ["ID", "Laptop", "Newspaper"]
         }
       ]
     },
@@ -98,8 +98,8 @@
         {
           "directionName": "West",
           "room": "SiebelEntry",
-          "enabled": false,
-          "validKeyNames":["ID"]
+          "enabled": true,
+          "validKeyNames":[]
         },
         {
           "directionName": "South",
@@ -110,8 +110,8 @@
         {
           "directionName": "Down",
           "room": "SiebelBasement",
-          "enabled": false,
-          "validKeyNames": ["ID"]
+          "enabled": true,
+          "validKeyNames": []
         }
       ]
     },
@@ -124,7 +124,7 @@
           "directionName": "North",
           "room": "SiebelEastHallway",
           "enabled": false,
-          "validKeyNames":["ID"]
+          "validKeyNames":["ID", "Jacket"]
         }
       ]
     },
@@ -136,8 +136,8 @@
         {
           "directionName": "Up",
           "room": "SiebelEastHallway",
-          "enabled": false,
-          "validKeyNames": ["ID"]
+          "enabled": true,
+          "validKeyNames": []
         }
       ]
     }

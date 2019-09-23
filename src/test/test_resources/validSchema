@@ -1,0 +1,62 @@
+{
+  "startingRoom": "MatthewsStreet",
+  "endingRoom": "Siebel1314",
+  "rooms": [
+    {
+      "name": "MatthewsStreet",
+      "description": "You are on Matthews, outside the Siebel Center",
+      "items": [{"name": "coin"}],
+      "directions": [
+        {
+          "directionName": "East",
+          "room": "SiebelEntry",
+          "enabled": false,
+          "validKeyNames": ["ID"]
+        }
+      ]
+    },
+    {
+      "name": "SiebelBasement",
+      "description": "You are in the basement of Siebel.  You see tables with students working and door to computer labs.",
+      "items": [{"name": "pencil"}],
+      "directions": [
+        {
+          "directionName": "Up",
+          "room": "SiebelEastHallway",
+          "enabled": false,
+          "validKeyNames": ["ID"]
+        }
+      ]
+    }
+  ],
+  "player": {
+    "items": [{"name":"pencil"},{"name": "eraser"}]
+  }
+}
+{
+  "properties": {
+    "startingRoom": {"type": "string"},
+    "endingRoom": {"type":  "string"},
+    "rooms": {"type": "array",
+      "items": {"type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "description": {"type": "string"},
+          "items": {"type": "array",
+            "items": {"type": "string"}
+          },
+          "directions": {"type": "array",
+            "items": {"type": "object",
+              "properties": {
+                "directionName": {"type": "string"},
+                "room": {"type": "string"},
+                "enabled": {"type": "boolean"},
+                "validKeyNames": {}
+
+              }
+            }
+          }
+        }
+      }
+    }
+  },

@@ -90,4 +90,10 @@ public class Input {
         Output.printDirections(directionList);
         return reader.readLine().trim();
     }
+
+//    public static boolean isValidSchema(String json) {
+//
+//        String defaultSchema = Data.getFileContents("src", "test", "test_resources", "defaultSchema");
+//        Jsonschema schema = JsonSchema.Parse(defaultSchema);
+//    }
 }

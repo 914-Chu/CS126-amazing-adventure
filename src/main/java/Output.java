@@ -38,4 +38,9 @@ public class Output {
         String invalid = Character.toUpperCase(userDirection.charAt(0)) + userDirection.substring(1).toLowerCase();;
         System.out.println("I can't go " + invalid + " from here.");
     }
+
+    public static void printDuplicate(String itemName) {
+
+        System.out.println("You already have " + itemName);
+    }
 }

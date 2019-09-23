@@ -2,6 +2,8 @@ import static org.junit.Assert.*;
 import com.google.gson.Gson;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.IOException;
 import java.util.*;
 
 public class MainTest {
@@ -22,16 +24,21 @@ public class MainTest {
     }
 
 //    @Test
-//    public void deserializeCheckObject() {
+//    public void deserializeCheckSchema() throws IOException {
 //
-//        assertTrue(layout instanceof Layout);
+//        String valid = input.processInput("validSchema");
+//        String invalid = input.processInput("invalidSchema");
+//        Object validObject = new Gson().fromJson(valid, Layout.class);
+//        Object invalidObject = new Gson().fromJson(invalid, Object.class);
+//        assertTrue(validObject instanceof Layout);
+//        assertFalse(invalidObject instanceof Layout);
 //    }
-//
-//    @Test
-//    public void deserializeNotNull() throws com.google.gson.JsonParseException {
-//
-//        assertNotEquals(null, layout);
-//    }
+
+    @Test
+    public void deserializeNotNull() throws com.google.gson.JsonParseException {
+
+        assertNotEquals(null, layout);
+    }
 
     @Test
     public void testStartWithGo() {
@@ -64,30 +71,30 @@ public class MainTest {
         assertFalse(Main.isValidDirection(invalidDirection4,layout));
     }
 
-//    @Test
-//    public void testCheckEnd() {
-//
-//        String isEnd = "Siebel1314";
-//        String notEnd = "SiebelNorthHallway";
-//        String endingRoom = layout.getEndingRoom();
-//
-//        assertTrue(Main.checkEnd(isEnd, endingRoom));
-//        assertFalse(Main.checkEnd(notEnd, endingRoom));
-//    }
-//
-//    @Test
-//    public void testExitQuit() {
-//
-//        String leave1 = "QuiT";
-//        String leave2 = "EXit";
-//
-//        int roomSize = roomList.size();
-//        int randomIndex = rand.nextInt(roomSize);
-//        String stay = roomList.get(randomIndex).getRoomName();
-//
-//        assertTrue(Main.leave(leave1));
-//        assertTrue(Main.leave(leave2));
-//        assertFalse(Main.leave(stay));
-//    }
+    @Test
+    public void testCheckEnd() {
+
+        String isEnd = "Siebel1314";
+        String notEnd = "SiebelNorthHallway";
+        String endingRoom = layout.getEndingRoom();
+
+        assertTrue(Main.checkEnd(isEnd, endingRoom));
+        assertFalse(Main.checkEnd(notEnd, endingRoom));
+    }
+
+    @Test
+    public void testToLeave() {
+
+        String leave1 = "QuiT";
+        String leave2 = "EXit";
+
+        int roomSize = roomList.size();
+        int randomIndex = rand.nextInt(roomSize);
+        String stay = roomList.get(randomIndex).getRoomName();
+
+        assertTrue(Main.toLeave(leave1));
+        assertTrue(Main.toLeave(leave2));
+        assertFalse(Main.toLeave(stay));
+    }
 }
 

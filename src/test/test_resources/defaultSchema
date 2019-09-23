@@ -1,0 +1,195 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "startingRoom",
+    "endingRoom",
+    "rooms",
+    "player"
+  ],
+  "properties": {
+    "startingRoom": {
+      "$id": "#/properties/startingRoom",
+      "type": "string",
+      "title": "The Startingroom Schema",
+      "default": "",
+      "examples": [
+        "MatthewsStreet"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "endingRoom": {
+      "$id": "#/properties/endingRoom",
+      "type": "string",
+      "title": "The Endingroom Schema",
+      "default": "",
+      "examples": [
+        "Siebel1314"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "rooms": {
+      "$id": "#/properties/rooms",
+      "type": "array",
+      "title": "The Rooms Schema",
+      "items": {
+        "$id": "#/properties/rooms/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "name",
+          "description",
+          "items",
+          "directions"
+        ],
+        "properties": {
+          "name": {
+            "$id": "#/properties/rooms/items/properties/name",
+            "type": "string",
+            "title": "The Name Schema",
+            "default": "",
+            "examples": [
+              "MatthewsStreet"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "description": {
+            "$id": "#/properties/rooms/items/properties/description",
+            "type": "string",
+            "title": "The Description Schema",
+            "default": "",
+            "examples": [
+              "You are on Matthews, outside the Siebel Center"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "items": {
+            "$id": "#/properties/rooms/items/properties/items",
+            "type": "array",
+            "title": "The Items Schema",
+            "items": {
+              "$id": "#/properties/rooms/items/properties/items/items",
+              "type": "object",
+              "title": "The Items Schema",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "$id": "#/properties/rooms/items/properties/items/items/properties/name",
+                  "type": "string",
+                  "title": "The Name Schema",
+                  "default": "",
+                  "examples": [
+                    "coin"
+                  ],
+                  "pattern": "^(.*)$"
+                }
+              }
+            }
+          },
+          "directions": {
+            "$id": "#/properties/rooms/items/properties/directions",
+            "type": "array",
+            "title": "The Directions Schema",
+            "items": {
+              "$id": "#/properties/rooms/items/properties/directions/items",
+              "type": "object",
+              "title": "The Items Schema",
+              "required": [
+                "directionName",
+                "room",
+                "enabled",
+                "validKeyNames"
+              ],
+              "properties": {
+                "directionName": {
+                  "$id": "#/properties/rooms/items/properties/directions/items/properties/directionName",
+                  "type": "string",
+                  "title": "The Directionname Schema",
+                  "default": "",
+                  "examples": [
+                    "East"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "room": {
+                  "$id": "#/properties/rooms/items/properties/directions/items/properties/room",
+                  "type": "string",
+                  "title": "The Room Schema",
+                  "default": "",
+                  "examples": [
+                    "SiebelEntry"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "enabled": {
+                  "$id": "#/properties/rooms/items/properties/directions/items/properties/enabled",
+                  "type": "boolean",
+                  "title": "The Enabled Schema",
+                  "default": false,
+                  "examples": [
+                    false
+                  ]
+                },
+                "validKeyNames": {
+                  "$id": "#/properties/rooms/items/properties/directions/items/properties/validKeyNames",
+                  "type": "array",
+                  "title": "The Validkeynames Schema",
+                  "items": {
+                    "$id": "#/properties/rooms/items/properties/directions/items/properties/validKeyNames/items",
+                    "type": "string",
+                    "title": "The Items Schema",
+                    "default": "",
+                    "examples": [
+                      "ID"
+                    ],
+                    "pattern": "^(.*)$"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "player": {
+      "$id": "#/properties/player",
+      "type": "object",
+      "title": "The Player Schema",
+      "required": [
+        "items"
+      ],
+      "properties": {
+        "items": {
+          "$id": "#/properties/player/properties/items",
+          "type": "array",
+          "title": "The Items Schema",
+          "items": {
+            "$id": "#/properties/player/properties/items/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "$id": "#/properties/player/properties/items/items/properties/name",
+                "type": "string",
+                "title": "The Name Schema",
+                "default": "",
+                "examples": [
+                  "pencil"
+                ],
+                "pattern": "^(.*)$"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
