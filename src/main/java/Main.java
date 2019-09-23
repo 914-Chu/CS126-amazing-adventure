@@ -23,8 +23,8 @@ public class Main {
         Layout layout = new Gson().fromJson(json, Layout.class);
         String startingRoom = layout.getStartingRoom();
         String endingRoom = layout.getEndingRoom();
-        Room currentRoom = layout.findRoom(startingRoom);
-        List<Direction> nextDirections = findNextDirections(currentRoom);
+        layout.setCurrentRoom(startingRoom);
+        Room currentRoom = layout.getCurrentRoom();
         String userInput;
         boolean isStart = true;
         boolean isEnd = false;
@@ -35,7 +35,7 @@ public class Main {
                 System.out.println("Your journey begins here");
                 isStart = false;
             }
-            userInput = Input.getUserInput(nextDirections);
+            userInput = Input.getUserInput(layout.getCurrentDirectionList());
 
             if(toLeave(userInput)) {
 
@@ -45,11 +45,9 @@ public class Main {
                 int afterGo = "go ".length();
                 String userDirection = userInput.substring(afterGo).trim();
 
-                if(isValidDirection(userDirection,currentRoom)) {
-
-                    currentRoom = layout.findRoom(currentRoom.getNextRoom());
-                    String currentRoomName = currentRoom.getRoomName();
-                    isEnd = checkEnd(currentRoomName, endingRoom);
+                if(isValidDirection(userDirection,layout)) {
+                    
+                    isEnd = checkEnd(currentRoom.getRoomName(), endingRoom);
                 }
             }else {
 
@@ -65,14 +63,14 @@ public class Main {
         return(toLowerCase == "go ");
     }
 
-    public static boolean isValidDirection(String userDirection, Room currentRoom) {
+    public static boolean isValidDirection(String userDirection, Layout layout) {
 
-        for(Direction direction : currentRoom.getDirectionsList()) {
+        for(Direction direction : layout.getCurrentDirectionList()) {
 
-            String name = direction.getDirectionName();
-            if(userDirection.equalsIgnoreCase(name)) {
+            String directionName = direction.getDirectionName();
+            if(userDirection.equalsIgnoreCase(directionName)) {
 
-                currentRoom.setNextRoom(name);
+                layout.setCurrentRoom(direction.getRoomInDirection());
                 return true;
             }
         }
