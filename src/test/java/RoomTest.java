@@ -16,7 +16,7 @@ public class RoomTest {
         Gson gson = new Gson();
         String content = URLConverter.getJson(url);
         Layout layout = gson.fromJson(content, Layout.class);
-        roomList = layout.getRoom();
+        roomList = layout.getRoomList();
     }
 
     @Test

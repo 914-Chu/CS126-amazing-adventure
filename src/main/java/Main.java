@@ -1,7 +1,6 @@
 import com.google.gson.Gson;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.nio.file.*;
 import java.util.*;
 
 public class Main {
@@ -22,41 +21,41 @@ public class Main {
         }
 
         Layout layout = new Gson().fromJson(json, Layout.class);
-        String startingRoom = layout.getStartingRoom();
-        String endingRoom = layout.getEndingRoom();
-        String userInput;
-        Room currentRoom = layout.findRoom(startingRoom);
-        boolean isStart = true;
-        boolean isEnd = false;
-
-        do{
-            System.out.println(currentRoom.getRoomDescription());
-            if(isStart) {
-                System.out.println("Your journey begins here");
-                isStart = false;
-            }
-            userInput = getUserInput(currentRoom);
-
-            if(leave(userInput)) {
-
-                isEnd = true;
-            }else if(checkInput(userInput)){
-
-                int afterGo = 3;
-                String userDirection = userInput.substring(afterGo);
-
-                if(checkDirection(userDirection,currentRoom)) {
-
-                    currentRoom = layout.findRoom(currentRoom.getNextRoom());
-                    String currentRoomName = currentRoom.getRoomName();
-                    isEnd = checkEnd(currentRoomName, endingRoom);
-                }
-            }else {
-
-                System.out.printf("I don't understand '%s'\n", userInput);
-            }
-
-        }while(!isEnd);
+//        String startingRoom = layout.getStartingRoom();
+//        String endingRoom = layout.getEndingRoom();
+//        String userInput;
+//        Room currentRoom = layout.findRoom(startingRoom);
+//        boolean isStart = true;
+//        boolean isEnd = false;
+//
+//        do{
+//            System.out.println(currentRoom.getRoomDescription());
+//            if(isStart) {
+//                System.out.println("Your journey begins here");
+//                isStart = false;
+//            }
+//            userInput = getUserInput(currentRoom);
+//
+//            if(leave(userInput)) {
+//
+//                isEnd = true;
+//            }else if(checkInput(userInput)){
+//
+//                int afterGo = 3;
+//                String userDirection = userInput.substring(afterGo);
+//
+//                if(checkDirection(userDirection,currentRoom)) {
+//
+//                    currentRoom = layout.findRoom(currentRoom.getNextRoom());
+//                    String currentRoomName = currentRoom.getRoomName();
+//                    isEnd = checkEnd(currentRoomName, endingRoom);
+//                }
+//            }else {
+//
+//                System.out.printf("I don't understand '%s'\n", userInput);
+//            }
+//
+//        }while(!isEnd);
     }
 
     public static boolean checkInput(String userInput) {

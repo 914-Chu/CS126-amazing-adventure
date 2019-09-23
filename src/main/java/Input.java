@@ -1,7 +1,9 @@
-import java.io.IOException;
+import java.io.*;
 import java.net.*;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
+import java.nio.file.Path;
+import java.nio.file.Files;
 import com.google.gson.Gson;
 
 public class Input {
@@ -10,12 +12,9 @@ public class Input {
 
         String json;
 
-        if(isValidPath(input)) {
+        if(isValidFile(input)) {
 
-            String path[] = input.split("\\\\");
-            int firstPath = 0;
-            int secondPath = 1;
-            json = Data.getFileContents(path[firstPath],path[secondPath]);
+            json = Data.getFileContents("src","test", "test_resources", input);
             if(isValidJson(json)) {
                 return json;
             }
@@ -51,15 +50,19 @@ public class Input {
     // Code below derived from:
     // https://stackoverflow.com/questions/468789/is-there-a-way-in-java-to-determine-if-a-path-is-valid-without-attempting-to-cre
 
-    public boolean isValidPath(String path) {
+    public boolean isValidFile(String filename) {
         try {
 
-            Paths.get(path);
-            String paths[] = path.split("\\\\");
-            return paths.length == 2;
-        } catch (InvalidPathException | NullPointerException e) {
+            String path = "src\\test\\test_resources\\" + filename;
+            Path paths = Paths.get(path);
+            if(Files.exists(paths) && !Files.isDirectory(paths)) {
+                return true;
+            }else {
+                throw new FileNotFoundException();
+            }
+        } catch(InvalidPathException | FileNotFoundException e) {
 
-            System.err.println("The file path is invalid");
+            System.err.println("Couldn't find file");
             return false;
         }
     }
@@ -69,16 +72,12 @@ public class Input {
         Gson gson = new Gson();
         try {
 
-            gson.fromJson(json, Object.class);
+            gson.fromJson(json, Layout.class);
            // Layout layout = gson.fromJson(json, Layout.class);
             return true;
-        } catch(com.google.gson.JsonSyntaxException e) {
+        } catch(com.google.gson.JsonParseException e) {
 
             System.err.println("The form of Json is invalid");
-            return false;
-        }catch(com.google.gson.JsonParseException e) {
-
-            System.err.println("The schema of Json is invalid");
             return false;
         }
     }

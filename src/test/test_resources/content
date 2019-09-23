@@ -5,45 +5,57 @@
     {
       "name": "MatthewsStreet",
       "description": "You are on Matthews, outside the Siebel Center",
-      "items": ["coin"],
+      "items": [{"name": "coin"}],
       "directions": [
         {
           "directionName": "East",
-          "room": "SiebelEntry"
+          "room": "SiebelEntry",
+          "enabled": false,
+          "validKeyNames": ["ID"]
         }
       ]
     },
     {
       "name": "SiebelEntry",
       "description": "You are in the west entry of Siebel Center. You can see the elevator, the ACM office, and hallways to the north and east.",
-      "items": ["sweatshirt", "key"],
+      "items": [{"name": "sweatshirt"}, {"name": "key"}],
       "directions": [
         {
           "directionName": "West",
-          "room": "MatthewsStreet"
+          "room": "MatthewsStreet",
+          "enabled": false,
+          "validKeyNames": ["ID"]
         },
         {
           "directionName": "Northeast",
-          "room": "AcmOffice"
+          "room": "AcmOffice",
+          "enabled": false,
+          "validKeyNames": ["ID"]
         },
         {
           "directionName": "North",
-          "room": "SiebelNorthHallway"
+          "room": "SiebelNorthHallway",
+          "enabled": false,
+          "validKeyNames": ["ID"]
         },
         {
           "directionName": "East",
-          "room": "SiebelEastHallway"
+          "room": "SiebelEastHallway",
+          "enabled": false,
+          "validKeyNames": ["ID"]
         }
       ]
     },
     {
       "name": "AcmOffice",
       "description": "You are in the ACM office.  There are lots of friendly ACM people.",
-      "items": ["pizza", "swag"],
+      "items": [{"name": "pizza"}, {"name": "swag"}],
       "directions": [
         {
           "directionName": "South",
-          "room": "SiebelEntry"
+          "room": "SiebelEntry",
+          "enabled": false,
+          "validKeyNames":["ID"]
         }
       ]
     },
@@ -53,64 +65,84 @@
       "directions": [
         {
           "directionName": "South",
-          "room": "SiebelEntry"
+          "room": "SiebelEntry",
+          "enabled": false,
+          "validKeyNames": ["ID"]
         },
         {
           "directionName": "NorthEast",
-          "room": "Siebel1112"
+          "room": "Siebel1112",
+          "enabled": false,
+          "validKeyNames": ["ID"]
         }
       ]
     },
     {
       "name": "Siebel1112",
       "description": "You are in Siebel 1112.  There is space for two code reviews in this room.",
-      "items": ["USB-C connector", "grading rubric"],
+      "items": [{"name":"USB-C connector"}, {"name": "grading rubric"}],
       "directions": [
         {
           "directionName": "West",
-          "room": "SiebelNorthHallway"
+          "room": "SiebelNorthHallway",
+          "enabled": false,
+          "validKeyNames": ["ID"]
         }
       ]
     },
     {
       "name": "SiebelEastHallway",
       "description": "You are in the east hallway.  You can see Einstein Bros' Bagels and a stairway.",
-      "items": ["bagel", "coffee"],
+      "items": [{"name": "bagel"}, {"name": "coffee"}],
       "directions": [
         {
           "directionName": "West",
-          "room": "SiebelEntry"
+          "room": "SiebelEntry",
+          "enabled": false,
+          "validKeyNames":["ID"]
         },
         {
           "directionName": "South",
-          "room": "Siebel1314"
+          "room": "Siebel1314",
+          "enabled": false,
+          "validKeyNames": ["ID"]
         },
         {
           "directionName": "Down",
-          "room": "SiebelBasement"
+          "room": "SiebelBasement",
+          "enabled": false,
+          "validKeyNames": ["ID"]
         }
       ]
     },
     {
       "name": "Siebel1314",
       "description": "You are in Siebel 1314.  There are happy CS 126 students doing a code review.",
+      "items": [{"name": "eraser"}],
       "directions": [
         {
           "directionName": "North",
-          "room": "SiebelEastHallway"
+          "room": "SiebelEastHallway",
+          "enabled": false,
+          "validKeyNames":["ID"]
         }
       ]
     },
     {
       "name": "SiebelBasement",
       "description": "You are in the basement of Siebel.  You see tables with students working and door to computer labs.",
-      "items": ["pencil"],
+      "items": [{"name": "pencil"}],
       "directions": [
         {
           "directionName": "Up",
-          "room": "SiebelEastHallway"
+          "room": "SiebelEastHallway",
+          "enabled": false,
+          "validKeyNames": ["ID"]
         }
       ]
     }
-  ]
+  ],
+  "player": {
+      "items": [{"name":"pencil"},{"name": "eraser"}]
+  }
 }

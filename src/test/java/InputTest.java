@@ -17,7 +17,7 @@ public class InputTest {
     @Test
     public void testProcessInputIsNull() throws IOException {
 
-        String invalidInput = "\\\\em;ladsjfole;;";
+        String invalidInput = "ugld8sjfole;;";
         String nothing = "";
         assertNull(input.processInput(invalidInput));
         assertNull(input.processInput(nothing));
@@ -37,10 +37,10 @@ public class InputTest {
     @Test
     public void testIsValidPath() {
 
-        String validPath = "test_resources\\content";
-        String invalidPath = "src\test\\test_resources";
-        assertTrue(input.isValidPath(validPath));
-        assertFalse(input.isValidPath(invalidPath));
+        String validFile = "content";
+        String invalidFile = "java";
+        assertTrue(input.isValidFile(validFile));
+        assertFalse(input.isValidFile(invalidFile));
     }
 
     //Unsolved: Different schema
