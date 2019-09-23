@@ -21,41 +21,42 @@ public class Main {
         }
 
         Layout layout = new Gson().fromJson(json, Layout.class);
-//        String startingRoom = layout.getStartingRoom();
-//        String endingRoom = layout.getEndingRoom();
-//        String userInput;
-//        Room currentRoom = layout.findRoom(startingRoom);
-//        boolean isStart = true;
-//        boolean isEnd = false;
-//
-//        do{
-//            System.out.println(currentRoom.getRoomDescription());
-//            if(isStart) {
-//                System.out.println("Your journey begins here");
-//                isStart = false;
-//            }
-//            userInput = getUserInput(currentRoom);
-//
-//            if(leave(userInput)) {
-//
-//                isEnd = true;
-//            }else if(checkInput(userInput)){
-//
-//                int afterGo = 3;
-//                String userDirection = userInput.substring(afterGo);
-//
-//                if(checkDirection(userDirection,currentRoom)) {
-//
-//                    currentRoom = layout.findRoom(currentRoom.getNextRoom());
-//                    String currentRoomName = currentRoom.getRoomName();
-//                    isEnd = checkEnd(currentRoomName, endingRoom);
-//                }
-//            }else {
-//
-//                System.out.printf("I don't understand '%s'\n", userInput);
-//            }
-//
-//        }while(!isEnd);
+        String startingRoom = layout.getStartingRoom();
+        String endingRoom = layout.getEndingRoom();
+        Room currentRoom = layout.findRoom(startingRoom);
+        List<Direction> nextDirections = findNextDirections(currentRoom);
+        String userInput;
+        boolean isStart = true;
+        boolean isEnd = false;
+
+        do{
+            System.out.println(currentRoom.getRoomDescription());
+            if(isStart) {
+                System.out.println("Your journey begins here");
+                isStart = false;
+            }
+            userInput = Input.getUserInput(nextDirections);
+
+            if(leave(userInput)) {
+
+                isEnd = true;
+            }else if(checkInput(userInput)){
+
+                int afterGo = 3;
+                String userDirection = userInput.substring(afterGo);
+
+                if(checkDirection(userDirection,currentRoom)) {
+
+                    currentRoom = layout.findRoom(currentRoom.getNextRoom());
+                    String currentRoomName = currentRoom.getRoomName();
+                    isEnd = checkEnd(currentRoomName, endingRoom);
+                }
+            }else {
+
+                System.out.printf("I don't understand '%s'\n", userInput);
+            }
+
+        }while(!isEnd);
     }
 
     public static boolean checkInput(String userInput) {
@@ -96,33 +97,13 @@ public class Main {
         return userInput.equalsIgnoreCase("exit") || userInput.equalsIgnoreCase("quit");
     }
 
-    private static String getUserInput(Room currentRoom) throws IOException{
+    public static List<Direction> findNextDirections(Room currentRoom) {
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-        System.out.print("From here, you can go: ");
-        printDirections(currentRoom);
-        return reader.readLine();
-    }
-
-    private static void printDirections(Room room) {
-
-        int listSize =  room.getDirectionsList().size();
-        List<Direction> directionList = room.getDirectionsList();
-        String direction;
-        if(listSize > 1) {
-
-            for (int i = 0; i < listSize - 1; i++) {
-
-                direction = directionList.get(i).getDirectionName();
-                System.out.print(direction);
-                System.out.print(", ");
-            }
-            direction = directionList.get(listSize-1).getDirectionName();
-            System.out.printf("or %s\n", direction);
-        }else {
-
-            System.out.println(directionList.get(0).getDirectionName());
+        List<Direction> next = new ArrayList<>();
+        for(Direction direction : currentRoom.getDirectionsList()){
+            next.add(direction);
         }
+        return next;
     }
+
 }

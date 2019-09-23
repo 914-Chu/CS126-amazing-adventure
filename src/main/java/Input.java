@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.*;
+import java.util.*;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 import java.nio.file.Path;
@@ -80,5 +81,14 @@ public class Input {
             System.err.println("The form of Json is invalid");
             return false;
         }
+    }
+
+    public static String getUserInput(List<Direction> directionList) throws IOException{
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("From here, you can go: ");
+        Output.printDirections(directionList);
+        return reader.readLine();
     }
 }
