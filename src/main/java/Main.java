@@ -7,12 +7,12 @@ public class Main {
 
     public static void main(String[] args) throws IOException{
 
-        Input input = new Input();
         if(args.length != 1) {
 
             System.err.println("Invalid program argument.");
             return;
         }
+        Input input = new Input();
         String json =  input.processInput(args[0]);
         if(json == null) {
 
@@ -37,15 +37,15 @@ public class Main {
             }
             userInput = Input.getUserInput(nextDirections);
 
-            if(leave(userInput)) {
+            if(toLeave(userInput)) {
 
                 isEnd = true;
-            }else if(checkInput(userInput)){
+            }else if(startWithGo(userInput)){
 
-                int afterGo = 3;
-                String userDirection = userInput.substring(afterGo);
+                int afterGo = "go ".length();
+                String userDirection = userInput.substring(afterGo).trim();
 
-                if(checkDirection(userDirection,currentRoom)) {
+                if(isValidDirection(userDirection,currentRoom)) {
 
                     currentRoom = layout.findRoom(currentRoom.getNextRoom());
                     String currentRoomName = currentRoom.getRoomName();
@@ -59,21 +59,20 @@ public class Main {
         }while(!isEnd);
     }
 
-    public static boolean checkInput(String userInput) {
+    public static boolean startWithGo(String userInput) {
 
-        String go = "go ";
-        String toLowerCase = userInput.toLowerCase().substring(go.length());
-        return(toLowerCase == go);
+        String toLowerCase = userInput.toLowerCase().substring("go ".length());
+        return(toLowerCase == "go ");
     }
 
-    public static boolean checkDirection(String userDirection, Room room) {
+    public static boolean isValidDirection(String userDirection, Room currentRoom) {
 
-        for(Direction direction : room.getDirectionsList()) {
+        for(Direction direction : currentRoom.getDirectionsList()) {
 
-            String directionsInList = direction.getDirectionName();
-            if(userDirection.equalsIgnoreCase(directionsInList)) {
+            String name = direction.getDirectionName();
+            if(userDirection.equalsIgnoreCase(name)) {
 
-                room.findNextRoom(directionsInList);
+                currentRoom.setNextRoom(name);
                 return true;
             }
         }
@@ -92,7 +91,7 @@ public class Main {
         return isEnd;
     }
 
-    public static boolean leave(String userInput) {
+    public static boolean toLeave(String userInput) {
 
         return userInput.equalsIgnoreCase("exit") || userInput.equalsIgnoreCase("quit");
     }

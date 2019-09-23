@@ -13,17 +13,6 @@ public class Room {
     public List<Item> getItemsList() {return items;}
     public List<Direction> getDirectionsList() {return directions;}
     public String getNextRoom() {return nextRoom;}
-
-    public void findNextRoom(String userDirection) {
-
-        for(Direction direction : directions) {
-
-            String name = direction.getDirectionName();
-            if(name.equalsIgnoreCase(userDirection)) {
-                nextRoom = direction.getRoomInDirection();
-            }
-        }
-    }
-
+    public void setNextRoom(String nextRoom) { this.nextRoom = nextRoom;}
 
 }

@@ -74,7 +74,6 @@ public class Input {
         try {
 
             gson.fromJson(json, Layout.class);
-           // Layout layout = gson.fromJson(json, Layout.class);
             return true;
         } catch(com.google.gson.JsonParseException e) {
 
@@ -89,6 +88,6 @@ public class Input {
 
         System.out.print("From here, you can go: ");
         Output.printDirections(directionList);
-        return reader.readLine();
+        return reader.readLine().trim();
     }
 }
