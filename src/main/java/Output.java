@@ -23,4 +23,13 @@ public class Output {
         }
     }
 
+    public static void printEnd() {
+
+        System.out.println("You've reached the ending room, thank you for playing");
+    }
+
+    public static void printUnknown(String userInput) {
+
+        System.out.printf("I don't understand '%s'\n", userInput);
+    }
 }

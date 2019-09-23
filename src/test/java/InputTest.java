@@ -52,4 +52,5 @@ public class InputTest {
         assertTrue(input.isValidJson(validJson));
         assertFalse(input.isValidJson(invalidJson));
     }
+
 }

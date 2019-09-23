@@ -24,13 +24,12 @@ public class Main {
         String startingRoom = layout.getStartingRoom();
         String endingRoom = layout.getEndingRoom();
         layout.setCurrentRoom(startingRoom);
-        Room currentRoom = layout.getCurrentRoom();
         String userInput;
         boolean isStart = true;
         boolean isEnd = false;
 
         do{
-            System.out.println(currentRoom.getRoomDescription());
+            System.out.println(layout.getCurrentRoom().getRoomDescription());
             if(isStart) {
                 System.out.println("Your journey begins here");
                 isStart = false;
@@ -46,12 +45,13 @@ public class Main {
                 String userDirection = userInput.substring(afterGo).trim();
 
                 if(isValidDirection(userDirection,layout)) {
-                    
-                    isEnd = checkEnd(currentRoom.getRoomName(), endingRoom);
+
+                    isEnd = checkEnd(layout.getCurrentRoom().getRoomName(), endingRoom);
+                    if(isEnd) {Output.printEnd();}
                 }
             }else {
 
-                System.out.printf("I don't understand '%s'\n", userInput);
+                Output.printUnknown(userInput);
             }
 
         }while(!isEnd);
@@ -59,8 +59,8 @@ public class Main {
 
     public static boolean startWithGo(String userInput) {
 
-        String toLowerCase = userInput.toLowerCase().substring("go ".length());
-        return(toLowerCase == "go ");
+        String toLowerCase = userInput.toLowerCase().substring(0, "go ".length());
+        return(toLowerCase.equals("go "));
     }
 
     public static boolean isValidDirection(String userDirection, Layout layout) {
@@ -69,6 +69,7 @@ public class Main {
 
             String directionName = direction.getDirectionName();
             if(userDirection.equalsIgnoreCase(directionName)) {
+
 
                 layout.setCurrentRoom(direction.getRoomInDirection());
                 return true;
@@ -80,27 +81,12 @@ public class Main {
 
     public static boolean checkEnd(String currentRoomName, String endingRoom) {
 
-        boolean isEnd = currentRoomName.equalsIgnoreCase(endingRoom);
-
-        if(isEnd) {
-            System.out.printf("You've reached the ending room %s, thank you for playing.\n", endingRoom);
-        }
-
-        return isEnd;
+       return currentRoomName.equalsIgnoreCase(endingRoom);
     }
 
     public static boolean toLeave(String userInput) {
 
         return userInput.equalsIgnoreCase("exit") || userInput.equalsIgnoreCase("quit");
-    }
-
-    public static List<Direction> findNextDirections(Room currentRoom) {
-
-        List<Direction> next = new ArrayList<>();
-        for(Direction direction : currentRoom.getDirectionsList()){
-            next.add(direction);
-        }
-        return next;
     }
 
 }
