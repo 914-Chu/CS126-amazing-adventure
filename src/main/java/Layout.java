@@ -8,6 +8,7 @@ public class Layout {
     private Player player;
     private Room currentRoom;
     private List<Direction> currentDirectionList;
+    private String nextRoomName;
 
     public String getStartingRoom() { return startingRoom;}
     public String getEndingRoom() {return endingRoom;}
@@ -15,6 +16,7 @@ public class Layout {
     public Player getPlayer() {return player;}
     public Room getCurrentRoom() {return currentRoom;}
     public List<Direction> getCurrentDirectionList() {return  currentDirectionList;}
+    public String getNextRoomName() {return nextRoomName;}
 
 
     public Room findRoom(String room) {
@@ -41,6 +43,11 @@ public class Layout {
             directionList.add(direction);
         }
         return directionList;
+    }
+
+    public void setNextRoomName(String nextRoomName) {
+
+        this.nextRoomName = nextRoomName;
     }
 
 }

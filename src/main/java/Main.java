@@ -46,6 +46,7 @@ public class Main {
 
                 if(isValidDirection(userDirection,layout)) {
 
+                    layout.setCurrentRoom(layout.getNextRoomName());
                     isEnd = checkEnd(layout.getCurrentRoom().getRoomName(), endingRoom);
                     if(isEnd) {Output.printEnd();}
                 }
@@ -70,12 +71,11 @@ public class Main {
             String directionName = direction.getDirectionName();
             if(userDirection.equalsIgnoreCase(directionName)) {
 
-
-                layout.setCurrentRoom(direction.getRoomInDirection());
+                layout.setNextRoomName(direction.getRoomInDirection());
                 return true;
             }
         }
-        System.out.println("I can't go " + userDirection);
+        Output.printInvalid(userDirection);
         return false;
     }
 

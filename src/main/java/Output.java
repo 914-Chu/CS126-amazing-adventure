@@ -32,4 +32,10 @@ public class Output {
 
         System.out.printf("I don't understand '%s'\n", userInput);
     }
+
+    public static void printInvalid(String userDirection) {
+
+        String invalid = Character.toUpperCase(userDirection.charAt(0)) + userDirection.substring(1).toLowerCase();;
+        System.out.println("I can't go " + invalid + " from here.");
+    }
 }

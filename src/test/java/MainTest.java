@@ -9,17 +9,16 @@ public class MainTest {
     private Layout layout;
     private List<Room> roomList;
     private Random rand = new Random();
-    Main main;
+    private Input input;
 
     @Before
     public void setUp() throws Exception {
 
-//        String url = "https://courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json";
-//        Gson gson = new Gson();
-//        String content = URLConverter.getJson(url);
-//        layout = gson.fromJson(content, Layout.class);
-//        roomList = layout.getRoomList();
-        main = new Main();
+        input = new Input();
+        String json = input.processInput("content");
+        layout = new Gson().fromJson(json, Layout.class);
+        layout.setCurrentRoom(layout.getStartingRoom());
+        roomList = layout.getRoomList();
     }
 
 //    @Test
@@ -37,27 +36,34 @@ public class MainTest {
     @Test
     public void testStartWithGo() {
 
-        assertTrue(main.startWithGo("go EaST"));
-        assertTrue(main.startWithGo("Go wesT"));
-        assertFalse(main.startWithGo("akdj;le go akj"));
-        assertFalse(main.startWithGo("gopher"));
+        assertTrue(Main.startWithGo("go EaST"));
+        assertTrue(Main.startWithGo("Go wesT"));
+        assertFalse(Main.startWithGo("akdj;le go akj"));
+        assertFalse(Main.startWithGo("gopher"));
     }
-//
-//    @Test
-//    public void testCheckDirection() {
-//
-//        int roomSize = roomList.size();
-//        int randomIndex = rand.nextInt(roomSize);
-//        Room room = roomList.get(randomIndex);
-//
-//        int directionSize = room.getDirectionsList().size();
-//        int randomIndex1 = rand.nextInt(directionSize);
-//        String direction = room.getDirectionsList().get(randomIndex1).getDirectionName();
-//
-//        assertTrue(Main.checkDirection(direction, room));
-//        assertFalse(Main.checkDirection("somewhere", room));
-//    }
-//
+
+
+    //test the starting room:MatthewsStreet
+    //"directions": ["directionName": "East",
+    //               "room": "SiebelEntry", ...
+
+    @Test
+    public void testIsValidDirection() {
+
+        String validDirection = "eAsT";
+        String invalidDirection1 = "NoRTH";
+        String invalidDirection2 = "soUth";
+        String invalidDirection3 = "west";
+        String invalidDirection4 = "NorTHeAst";
+
+        assertTrue(Main.isValidDirection(validDirection, layout));
+        assertEquals("SiebelEntry", layout.getNextRoomName());
+        assertFalse(Main.isValidDirection(invalidDirection1,layout));
+        assertFalse(Main.isValidDirection(invalidDirection2, layout));
+        assertFalse(Main.isValidDirection(invalidDirection3,layout));
+        assertFalse(Main.isValidDirection(invalidDirection4,layout));
+    }
+
 //    @Test
 //    public void testCheckEnd() {
 //
