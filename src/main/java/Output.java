@@ -43,4 +43,9 @@ public class Output {
 
         System.out.println("You already have " + itemName);
     }
+
+    public static void printNoItem(String itemName) {
+
+        System.out.println("You don't have " + itemName);
+    }
 }
