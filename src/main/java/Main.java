@@ -12,7 +12,7 @@ public class Main {
             return;
         }
 
-        String json =  Input.processInput(args[0]);
+        String json =  Input.getJson(args[0]);
         if(json == null) {
 
             System.err.println("Json parsing failed");

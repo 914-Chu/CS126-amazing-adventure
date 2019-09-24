@@ -13,7 +13,6 @@ public class Player {
         items.add(new Item("Cup"));
         items.add(new Item("Backpack"));
         items.add(new Item("Phone"));
-
     }
 
     public boolean use(String item) {

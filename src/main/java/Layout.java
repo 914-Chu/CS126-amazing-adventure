@@ -6,6 +6,7 @@ public class Layout {
     private String endingRoom;
     private List<Room> rooms;
     private Player player;
+
     private Room currentRoom;
     private List<Direction> currentDirectionList;
     private List<String> directionNameList;

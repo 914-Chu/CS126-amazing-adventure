@@ -17,8 +17,8 @@ public class InputTest {
 
         String invalidInput = "ugld8sjfole;;";
         String nothing = "";
-        assertNull(Input.processInput(invalidInput));
-        assertNull(Input.processInput(nothing));
+        assertNull(Input.getJson(invalidInput));
+        assertNull(Input.getJson(nothing));
     }
 
     @Test

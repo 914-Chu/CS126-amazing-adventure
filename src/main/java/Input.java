@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 
 public class Input {
 
-    public static String processInput(String input) throws IOException{
+    public static String getJson(String input) throws IOException{
 
         String json;
 

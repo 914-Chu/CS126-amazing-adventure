@@ -80,7 +80,8 @@ public class Output {
 
     public static String format(String input) {
 
-        return Character.toUpperCase(input.charAt(0)) + input.substring(1).toLowerCase();
+        String trim = input.trim();
+        return Character.toUpperCase(trim.charAt(0)) + trim.substring(1).toLowerCase();
     }
 
     private static void formatList(List<String> list) {

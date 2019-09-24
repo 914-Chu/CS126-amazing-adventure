@@ -12,12 +12,13 @@ public class Room {
     public List<Item> getItemsList() {return items;}
     public List<Direction> getDirectionsList() {return directions;}
 
+
     public List<String> getItemNameList() {
 
         List<String> itemNameList = new ArrayList<>();
 
         for(Item item: items) {
-            itemNameList.add(Output.format(item.getItemName()));
+            itemNameList.add(item.getItemName());
         }
         return itemNameList;
     }

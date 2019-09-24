@@ -16,8 +16,7 @@ public class MainTest {
     @Before
     public void setUp() throws Exception {
 
-        input = new Input();
-        String json = Input.processInput("content");
+        String json = Input.getJson("content");
         layout = new Gson().fromJson(json, Layout.class);
         layout.setCurrentRoom(layout.getStartingRoom());
         roomList = layout.getRoomList();

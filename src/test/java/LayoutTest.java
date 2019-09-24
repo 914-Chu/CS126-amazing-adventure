@@ -46,15 +46,4 @@ public class LayoutTest {
         assertNull(roomNotFount);
     }
 
-    @Test
-    public void testRoomListSize() {
-
-        int actualSize = 0;
-        int expectSize = roomList.size();
-        for(Room room : roomList) {
-            actualSize++;
-        }
-
-        assertEquals(expectSize, actualSize);
-    }
 }
