@@ -50,11 +50,11 @@ public class Main {
 
                     layout.setCurrentRoom(layout.getNextRoomName());
                     isEnd = checkEnd(layout.getCurrentRoom().getRoomName(), endingRoom);
-                    if(isEnd) {Output.printEnd();}
+                    if(isEnd) {Output.end();}
                 }
             }else {
 
-                Output.printUnknown(userInput);
+                Output.unknown(userInput);
             }
 
         }while(!isEnd);
@@ -74,13 +74,7 @@ public class Main {
 
                 if(!direction.getIsDirectionEnabled() && !ifForward(layout.getPlayer(), direction)) {
 
-                    boolean tryAgain = true;
-
-                    do {
-                        Output.printDirectionDenied(direction.getDirectionName());
-                        Output.printIfUseAgain();
-
-                    }while(tryAgain);
+                    Output.directionDenied(direction.getDirectionName());
                     return false;
                 }else{
 
@@ -89,7 +83,7 @@ public class Main {
                 }
             }
         }
-        Output.printInvalid(userDirection);
+        Output.invalidDirection(userDirection);
         return false;
     }
 
@@ -103,13 +97,23 @@ public class Main {
         return userInput.equalsIgnoreCase("exit") || userInput.equalsIgnoreCase("quit");
     }
 
-    public static boolean ifForward(Player player, Direction direction) throws IOException{
+    private static boolean ifForward(Player player, Direction direction) throws IOException{
 
+        if(!willing()) return false;
 
         List<String> validKeyList = direction.getValidKeyNamesList();
-        Output.printValidKey(validKeyList);
-        String itemName = Input.getUserInput();
+        Output.validKey(validKeyList);
+        Output.playerItem(player.getItemNameList());
+        String itemName = Output.format(Input.getUserInput());
         return validKeyList.contains(itemName) && player.use(itemName);
     }
+
+    private static boolean willing() throws IOException{
+
+        Output.askPermission();
+        String userInput = Input.getUserInput();
+        return userInput.equalsIgnoreCase("yes");
+    }
+
 
 }

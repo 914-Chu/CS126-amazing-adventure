@@ -23,48 +23,57 @@ public class Output {
         }
     }
 
-    public static void printEnd() {
+    public static void end() {
 
         System.out.println("You've reached the ending room, thank you for playing");
     }
 
-    public static void printUnknown(String userInput) {
+    public static void unknown(String userInput) {
 
         System.out.printf("I don't understand '%s'\n", userInput);
     }
 
-    public static void printInvalid(String userDirection) {
+    public static void invalidDirection(String userDirection) {
 
-        String invalid = Character.toUpperCase(userDirection.charAt(0)) + userDirection.substring(1).toLowerCase();;
+        String invalid = format(userDirection);
         System.out.println("I can't go " + invalid + " from here.");
     }
 
-    public static void printDuplicate(String itemName) {
+    public static void duplicate(String itemName) {
 
         System.out.println("You already have " + itemName);
     }
 
-    public static void printNoItem(String itemName) {
+    public static void noItem(String itemName) {
 
         System.out.println("You don't have " + itemName);
     }
 
-    public static void printValidKey(List<String> validKeyList) {
+    public static void validKey(List<String> validKeyList) {
 
         System.out.println("You can enable this direction by using:");
-        for(String validKey : validKeyList) {
-
-            System.out.println(validKey);
-        }
+        validKeyList.forEach(System.out::print);
     }
 
-    public static void printDirectionDenied(String directionName) {
+    public static void playerItem(List<String> playerItemList) {
+
+        System.out.println("Your items:");
+        playerItemList.forEach(System.out::print);
+    }
+
+    public static void directionDenied(String directionName) {
 
         System.out.println("You've been denied to go " + directionName);
     }
 
-    public static void printIfUseAgain() {
+    public static void askPermission() {
 
-        System.out.println("Do you want to try using another item?");
+        System.out.println("Do you want to try enabling this direction with items? (Enter yes/no)");
     }
+
+    public static String format(String input) {
+
+        return Character.toUpperCase(input.charAt(0)) + input.substring(1).toLowerCase();
+    }
+
 }

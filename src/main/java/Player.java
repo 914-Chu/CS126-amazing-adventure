@@ -16,6 +16,7 @@ public class Player {
     }
 
     public List<Item> getPlayerItemList() {return items;}
+    public List<String> getItemNameList() {return itemNameList;}
 
     public boolean use(String item) {
 
@@ -24,7 +25,7 @@ public class Player {
             useItem(item);
             return true;
         }
-        Output.printNoItem(item);
+        Output.noItem(item);
         return false;
     }
 
@@ -35,7 +36,7 @@ public class Player {
             addItem(item);
             return true;
         }
-        Output.printDuplicate(item);
+        Output.duplicate(item);
         return false;
     }
 
