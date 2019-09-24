@@ -6,43 +6,40 @@ import java.util.*;
 
 public class LayoutTest {
 
-    private Layout layout;
-    private List<Room> roomList;
-    private Random rand = new Random();
-
+    Layout layout;
+    Random rand;
     @Before
     public void setUp() throws Exception {
 
-        String url = "https://courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json";
-        Gson gson = new Gson();
-        String content = URLConverter.getJson(url);
-        layout = gson.fromJson(content, Layout.class);
-        roomList = layout.getRoomList();
+        String json = Input.getJson("content");
+        layout = new Gson().fromJson(json, Layout.class);
+        layout.setCurrentRoom(layout.getStartingRoom());
+        rand = new Random();
     }
+
 
     @Test
     public void testStartingRoom() {
-        
+
         assertEquals("MatthewsStreet", layout.getStartingRoom());
     }
 
     @Test
     public void testEndingRoom() {
-        
+
         assertEquals("Siebel1314", layout.getEndingRoom());
     }
 
     @Test
     public void testFindRoom() {
 
-        int randomIndex = rand.nextInt(roomList.size());
-        String expectName = roomList.get(randomIndex).getRoomName();
-        String actualName = layout.findRoom(expectName).getRoomName();
 
-        String unexpectName = "ad;lfkje";
-        Room roomNotFount = layout.findRoom(unexpectName);
+        Room expectRoom = layout.findRoom("SiebelBasEMEnt");
+        Room roomNotFount = layout.findRoom("daoi;elkqe");
+        String expectDescription = "You are in the basement of Siebel.  You see tables with students working and door to computer labs.";
 
-        assertEquals(expectName, actualName);
+        assertEquals("SiebelBasement", expectRoom.getRoomName());
+        assertEquals(expectDescription, expectRoom.getRoomDescription());
         assertNull(roomNotFount);
     }
 

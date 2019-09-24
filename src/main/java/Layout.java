@@ -26,7 +26,7 @@ public class Layout {
 
         for (Room r : rooms) {
 
-            if (r.getRoomName().equals(room)) {
+            if (r.getRoomName().equalsIgnoreCase(room)) {
                 return r;
             }
         }

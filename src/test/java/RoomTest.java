@@ -7,6 +7,7 @@ import java.util.*;
 public class RoomTest {
 
     Layout layout;
+
     @Before
     public void setUp() throws Exception {
 
@@ -31,15 +32,29 @@ public class RoomTest {
     }
 
     @Test
-    public void testGetItemList() {
+    public void testGetItemsList() {
 
         Room room1 = layout.getRoomList().get(5);
         List<Item> expect = new ArrayList<>();
         expect.add(new Item("Bagel"));
         expect.add(new Item("Coffee"));
+        List<Item> unexpect = new ArrayList<>();
+        unexpect.add(new Item("Pizza"));
 
-        assertEquals(expect.get(0), room1.getItemsList().get(0));
-        assertEquals(expect.get(1), room1.getItemNameList().get(1));
+        assertTrue(isEqualItem(expect,room1.getItemsList()));
+        assertFalse(isEqualItem(unexpect,room1.getItemsList()));
+    }
+
+    @Test
+    public void testGetDirectionsList() {
+
+        Direction direction = layout.getRoomList().get(1).getDirectionsList().get(1);
+        List<String> expectValidKey = new ArrayList<>(Arrays.asList("Id", "Shoe"));
+
+        assertEquals("Northeast", direction.getDirectionName());
+        assertEquals("AcmOffice", direction.getRoomInDirection());
+        assertFalse(direction.getIsDirectionEnabled());
+        assertEquals(expectValidKey, direction.getValidKeyNamesList());
     }
 
     @Test
@@ -48,6 +63,17 @@ public class RoomTest {
         Room room1 = layout.getRoomList().get(4);
         List<String> expect = Arrays.asList("USB-C connector", "Grading rubric");
         assertEquals(expect, room1.getItemNameList());
+    }
+
+    private boolean isEqualItem(List<Item> list1, List<Item> list2){
+
+        return (list1.size() == list2.size()) && isEqualItem(list1, list2, 0);
+    }
+
+    private boolean isEqualItem(List<Item> list1, List<Item> list2, int index) {
+
+        boolean equalElement = list1.get(index).getItemName().equals(list2.get(index).getItemName());
+        return index == list1.size() - 1 || (equalElement && isEqualItem(list1, list2, index + 1));
     }
 
 }
