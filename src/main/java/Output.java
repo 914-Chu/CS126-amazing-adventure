@@ -4,19 +4,24 @@ public class Output {
 
     public static void description(Room currentRoom) {
 
+        if(currentRoom.getItemsList().size() == 0) {
+            System.out.println("Empty item list");
+            return;
+        }
         System.out.println(currentRoom.getRoomDescription());
-        System.out.println("You can see ");
-        formatList(currentRoom.getItemsList().);
+        System.out.print("You can see ");
+        formatList(currentRoom.getItemNameList());
+        System.out.println(" here.");
     }
 
     public static void directions(List<String> directionNameList) {
 
-        int listSize =  directionNameList.size();
-        if(listSize == 0) {
-            System.err.println("Empty direction list");
+        if(directionNameList.size() == 0) {
+            System.out.println("Empty direction list");
             return;
         }
         formatList(directionNameList);
+        System.out.println();
     }
 
     public static void end() {
@@ -89,10 +94,10 @@ public class Output {
                 System.out.print(list.get(i));
                 System.out.print(", ");
             }
-            System.out.printf("or %s\n", list.get(listSize-1));
+            System.out.print(list.get(listSize-1));
         }else {
 
-            System.out.println(list.get(0));
+            System.out.print(list.get(0));
         }
     }
 

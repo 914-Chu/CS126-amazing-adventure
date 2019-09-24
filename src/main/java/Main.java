@@ -28,8 +28,8 @@ public class Main {
         boolean isEnd = false;
 
         do{
+
             Output.description(layout.getCurrentRoom());
-            System.out.println(layout.getCurrentRoom().getRoomDescription());
             if(isStart) {
                 System.out.println("Your journey begins here");
                 isStart = false;
