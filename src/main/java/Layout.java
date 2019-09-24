@@ -8,6 +8,7 @@ public class Layout {
     private Player player;
     private Room currentRoom;
     private List<Direction> currentDirectionList;
+    private List<String> directionNameList;
     private String nextRoomName;
 
     public String getStartingRoom() { return startingRoom;}
@@ -16,6 +17,7 @@ public class Layout {
     public Player getPlayer() {return player;}
     public Room getCurrentRoom() {return currentRoom;}
     public List<Direction> getCurrentDirectionList() {return  currentDirectionList;}
+    public List<String> getDirectionNameList() {return directionNameList;};
     public String getNextRoomName() {return nextRoomName;}
 
 
@@ -34,6 +36,7 @@ public class Layout {
 
         this.currentRoom = findRoom(currentRoom);
         currentDirectionList = findDirections(this.currentRoom);
+        directionNameList = generateDirectionNameList();
     }
 
     public static List<Direction> findDirections(Room room) {
@@ -44,6 +47,16 @@ public class Layout {
     public void setNextRoomName(String nextRoomName) {
 
         this.nextRoomName = nextRoomName;
+    }
+
+    private List<String> generateDirectionNameList() {
+
+        List<String> directionNameList = new ArrayList<>();
+
+        for(Direction direction : currentDirectionList) {
+            directionNameList.add(Output.format(direction.getDirectionName()));
+        }
+        return directionNameList;
     }
 
 }

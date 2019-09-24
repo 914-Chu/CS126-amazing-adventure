@@ -96,5 +96,13 @@ public class MainTest {
         assertTrue(Main.toLeave(leave2));
         assertFalse(Main.toLeave(stay));
     }
+
+    @Test
+    public void testInValidKeyList() {
+
+        List<String> item = new ArrayList<>(Arrays.asList("pencil", "eraser", "pen"));
+        assertTrue(Main.inValidKeyList("PeNciL",item));
+        assertFalse(Main.inValidKeyList("rULer", item));
+    }
 }
 

@@ -28,6 +28,7 @@ public class Main {
         boolean isEnd = false;
 
         do{
+            Output.description(layout.getCurrentRoom());
             System.out.println(layout.getCurrentRoom().getRoomDescription());
             if(isStart) {
                 System.out.println("Your journey begins here");
@@ -35,7 +36,7 @@ public class Main {
             }
 
             System.out.print("From here, you can go: ");
-            Output.printDirections(layout.getCurrentDirectionList());
+            Output.directions(layout.getDirectionNameList());
             userInput = Input.getUserInput();
 
             if(toLeave(userInput)) {
@@ -124,6 +125,5 @@ public class Main {
         String userInput = Input.getUserInput();
         return userInput.equalsIgnoreCase("yes");
     }
-
 
 }

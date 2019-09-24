@@ -12,4 +12,5 @@ public class Room {
     public List<Item> getItemsList() {return items;}
     public List<Direction> getDirectionsList() {return directions;}
 
+
 }

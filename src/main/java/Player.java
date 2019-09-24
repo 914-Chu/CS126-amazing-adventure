@@ -1,32 +1,49 @@
 import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Player {
 
-    private List<Item> items;
+    private List<Item> items = new ArrayList<>();
 
     public List<Item> getPlayerItemList() {return items;}
 
+    public Player() {
 
-    public boolean use(String itemName) {
+        items.add(new Item("Cup"));
+        items.add(new Item("Backpack"));
+        items.add(new Item("Phone"));
 
-        if (inList(itemName)) {
+    }
 
-            items.remove(new Item(itemName));
-            return true;
+    public boolean use(String item) {
+
+        List<String> nameList = getItemNameList();
+        for(int i = 0; i < nameList.size(); i++) {
+
+            if(nameList.get(i).equalsIgnoreCase(item)) {
+
+                items.remove(i);
+                return true;
+            }
         }
-        Output.noItem(itemName);
+        Output.noItem(Output.format(item));
         return false;
     }
 
-    public boolean pickUp(String itemName) {
+    public boolean pickUp(String item) {
 
-        if(!inList(itemName)){
+        List<String> nameList = getItemNameList();
+        for(int i = 0; i < nameList.size(); i++) {
 
-            items.add(new Item(itemName));
-            return true;
+            if(nameList.get(i).equalsIgnoreCase(item)) {
+
+                Output.duplicate(Output.format(item));
+                return false;
+            }
         }
-        Output.duplicate(itemName);
-        return false;
+        items.add(new Item(item));
+        return true;
     }
 
     public boolean inList(String itemName) {
@@ -44,8 +61,9 @@ public class Player {
     public List<String> getItemNameList() {
 
         List<String> itemNameList = new ArrayList<>();
+
         for(Item item : items) {
-            itemNameList.add(item.getItemName());
+            itemNameList.add(Output.format(item.getItemName()));
         }
         return itemNameList;
     }

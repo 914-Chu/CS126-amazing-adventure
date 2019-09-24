@@ -2,25 +2,21 @@ import java.util.*;
 
 public class Output {
 
-    public static void printDirections(List<Direction> directionList) {
+    public static void description(Room currentRoom) {
 
-        int listSize =  directionList.size();
+        System.out.println(currentRoom.getRoomDescription());
+        System.out.println("You can see ");
+        formatList(currentRoom.getItemsList().);
+    }
+
+    public static void directions(List<String> directionNameList) {
+
+        int listSize =  directionNameList.size();
         if(listSize == 0) {
             System.err.println("Empty direction list");
             return;
         }
-        else if(listSize > 1) {
-
-            for (int i = 0; i < listSize - 1; i++) {
-
-                System.out.print(directionList.get(i).getDirectionName());
-                System.out.print(", ");
-            }
-            System.out.printf("or %s\n", directionList.get(listSize-1).getDirectionName());
-        }else {
-
-            System.out.println(directionList.get(0).getDirectionName());
-        }
+        formatList(directionNameList);
     }
 
     public static void end() {
@@ -82,5 +78,22 @@ public class Output {
         return Character.toUpperCase(input.charAt(0)) + input.substring(1).toLowerCase();
     }
 
+    private static void formatList(List<String> list) {
+
+        int listSize = list.size();
+
+        if(listSize > 1) {
+
+            for (int i = 0; i < listSize - 1; i++) {
+
+                System.out.print(list.get(i));
+                System.out.print(", ");
+            }
+            System.out.printf("or %s\n", list.get(listSize-1));
+        }else {
+
+            System.out.println(list.get(0));
+        }
+    }
 
 }

@@ -11,7 +11,7 @@
           "directionName": "East",
           "room": "SiebelEntry",
           "enabled": false,
-          "validKeyNames": ["Id","Ticket"]
+          "validKeyNames": ["Id", "Ticket", "Pencil"]
         }
       ]
     },
