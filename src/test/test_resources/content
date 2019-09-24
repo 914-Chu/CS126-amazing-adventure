@@ -5,32 +5,32 @@
     {
       "name": "MatthewsStreet",
       "description": "You are on Matthews, outside the Siebel Center",
-      "items": [{"name": "coin"}],
+      "items": [{"name": "Coin"}],
       "directions": [
         {
           "directionName": "East",
           "room": "SiebelEntry",
           "enabled": false,
-          "validKeyNames": ["ID","Ticket"]
+          "validKeyNames": ["Id","Ticket"]
         }
       ]
     },
     {
       "name": "SiebelEntry",
       "description": "You are in the west entry of Siebel Center. You can see the elevator, the ACM office, and hallways to the north and east.",
-      "items": [{"name": "sweatshirt"}, {"name": "key"}],
+      "items": [{"name": "Sweatshirt"}, {"name": "Key"}],
       "directions": [
         {
           "directionName": "West",
           "room": "MatthewsStreet",
           "enabled": false,
-          "validKeyNames": ["ID"]
+          "validKeyNames": ["Id"]
         },
         {
           "directionName": "Northeast",
           "room": "AcmOffice",
           "enabled": false,
-          "validKeyNames": ["ID", "Shoe"]
+          "validKeyNames": ["Id", "Shoe"]
         },
         {
           "directionName": "North",
@@ -42,20 +42,20 @@
           "directionName": "East",
           "room": "SiebelEastHallway",
           "enabled": false,
-          "validKeyNames": ["ID", "Backpack", "Phone"]
+          "validKeyNames": ["Id", "Backpack", "Phone"]
         }
       ]
     },
     {
       "name": "AcmOffice",
       "description": "You are in the ACM office.  There are lots of friendly ACM people.",
-      "items": [{"name": "pizza"}, {"name": "swag"}],
+      "items": [{"name": "Pizza"}, {"name": "Swag"}],
       "directions": [
         {
           "directionName": "South",
           "room": "SiebelEntry",
           "enabled": false,
-          "validKeyNames":["ID", "Ring"]
+          "validKeyNames":["Id", "Ring"]
         }
       ]
     },
@@ -67,7 +67,7 @@
           "directionName": "South",
           "room": "SiebelEntry",
           "enabled": false,
-          "validKeyNames": ["ID", "Nametag"]
+          "validKeyNames": ["Id", "Nametag"]
         },
         {
           "directionName": "NorthEast",
@@ -80,20 +80,20 @@
     {
       "name": "Siebel1112",
       "description": "You are in Siebel 1112.  There is space for two code reviews in this room.",
-      "items": [{"name":"USB-C connector"}, {"name": "grading rubric"}],
+      "items": [{"name":"USB-C connector"}, {"name": "Grading rubric"}],
       "directions": [
         {
           "directionName": "West",
           "room": "SiebelNorthHallway",
           "enabled": false,
-          "validKeyNames": ["ID", "Laptop", "Newspaper"]
+          "validKeyNames": ["Id", "Laptop", "Newspaper"]
         }
       ]
     },
     {
       "name": "SiebelEastHallway",
       "description": "You are in the east hallway.  You can see Einstein Bros' Bagels and a stairway.",
-      "items": [{"name": "bagel"}, {"name": "coffee"}],
+      "items": [{"name": "Bagel"}, {"name": "Coffee"}],
       "directions": [
         {
           "directionName": "West",
@@ -105,7 +105,7 @@
           "directionName": "South",
           "room": "Siebel1314",
           "enabled": false,
-          "validKeyNames": ["ID"]
+          "validKeyNames": ["Id"]
         },
         {
           "directionName": "Down",
@@ -118,20 +118,20 @@
     {
       "name": "Siebel1314",
       "description": "You are in Siebel 1314.  There are happy CS 126 students doing a code review.",
-      "items": [{"name": "eraser"}],
+      "items": [{"name": "Eraser"}],
       "directions": [
         {
           "directionName": "North",
           "room": "SiebelEastHallway",
           "enabled": false,
-          "validKeyNames":["ID", "Jacket"]
+          "validKeyNames":["Id", "Jacket"]
         }
       ]
     },
     {
       "name": "SiebelBasement",
       "description": "You are in the basement of Siebel.  You see tables with students working and door to computer labs.",
-      "items": [{"name": "pencil"}],
+      "items": [{"name": "Pencil"}],
       "directions": [
         {
           "directionName": "Up",
@@ -143,6 +143,6 @@
     }
   ],
   "player": {
-      "items": [{"name":"pencil"},{"name": "eraser"}]
+      "items": [{"name":"Pencil"},{"name": "Eraser"}]
   }
 }

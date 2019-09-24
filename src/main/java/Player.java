@@ -3,52 +3,51 @@ import java.util.*;
 public class Player {
 
     private List<Item> items;
-    private List<String> itemNameList = new ArrayList<>();
-
-    public Player() {
-
-        if(items != null) {
-            for (Item item : items) {
-
-                itemNameList.add(item.getItemName());
-            }
-        }
-    }
 
     public List<Item> getPlayerItemList() {return items;}
-    public List<String> getItemNameList() {return itemNameList;}
 
-    public boolean use(String item) {
 
-        if(itemNameList.contains(item)) {
+    public boolean use(String itemName) {
 
-            useItem(item);
+        if (inList(itemName)) {
+
+            items.remove(new Item(itemName));
             return true;
         }
-        Output.noItem(item);
+        Output.noItem(itemName);
         return false;
     }
 
-    public boolean pickUp(String item) {
+    public boolean pickUp(String itemName) {
 
-        if(!itemNameList.contains(item)){
+        if(!inList(itemName)){
 
-            addItem(item);
+            items.add(new Item(itemName));
             return true;
         }
-        Output.duplicate(item);
+        Output.duplicate(itemName);
         return false;
     }
 
-    private void addItem(String itemName) {
+    public boolean inList(String itemName) {
 
-        items.add(new Item(itemName));
-        itemNameList.add(itemName);
+        for(String name : getItemNameList()) {
+
+            if (name.equalsIgnoreCase(itemName)) {
+
+                return true;
+            }
+        }
+        return false;
     }
 
-    private void useItem(String itemName) {
+    public List<String> getItemNameList() {
 
-        items.remove(new Item(itemName));
-        itemNameList.remove(itemName);
+        List<String> itemNameList = new ArrayList<>();
+        for(Item item : items) {
+            itemNameList.add(item.getItemName());
+        }
+        return itemNameList;
     }
+
 }

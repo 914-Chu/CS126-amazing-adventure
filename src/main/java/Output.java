@@ -49,16 +49,17 @@ public class Output {
         System.out.println("You don't have " + itemName);
     }
 
-    public static void validKey(List<String> validKeyList) {
+    public static void options(List<String> validKeyList, List<String> playerItemList) {
 
         System.out.println("You can enable this direction by using:");
-        validKeyList.forEach(System.out::print);
-    }
-
-    public static void playerItem(List<String> playerItemList) {
-
-        System.out.println("Your items:");
-        playerItemList.forEach(System.out::print);
+        for(String validKey : validKeyList) {
+            System.out.print(validKey + " ");
+        }
+        System.out.println("\nYour items:");
+        for(String item: playerItemList) {
+            System.out.print(item + " ");
+        }
+        System.out.println();
     }
 
     public static void directionDenied(String directionName) {
@@ -68,12 +69,18 @@ public class Output {
 
     public static void askPermission() {
 
-        System.out.println("Do you want to try enabling this direction with items? (Enter yes/no)");
+        System.out.println("Do you want to try enabling this direction with items? (Enter yes/anything else will be considered no)");
+    }
+
+    public static void wrongItem(String itemName) {
+
+        System.out.println(itemName + " can't be used to enable this direction.");
     }
 
     public static String format(String input) {
 
         return Character.toUpperCase(input.charAt(0)) + input.substring(1).toLowerCase();
     }
+
 
 }

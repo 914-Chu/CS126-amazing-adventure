@@ -97,15 +97,25 @@ public class Main {
         return userInput.equalsIgnoreCase("exit") || userInput.equalsIgnoreCase("quit");
     }
 
+    public static boolean inValidKeyList(String itemName, List<String> validKeyList) {
+
+        for(String validKey : validKeyList) {
+            if(validKey.equalsIgnoreCase(itemName)){
+                return true;
+            }
+        }
+        Output.wrongItem(itemName);
+        return false;
+    }
+
     private static boolean ifForward(Player player, Direction direction) throws IOException{
 
         if(!willing()) return false;
 
         List<String> validKeyList = direction.getValidKeyNamesList();
-        Output.validKey(validKeyList);
-        Output.playerItem(player.getItemNameList());
+        Output.options(validKeyList,player.getItemNameList());
         String itemName = Output.format(Input.getUserInput());
-        return validKeyList.contains(itemName) && player.use(itemName);
+        return player.use(itemName) && inValidKeyList(itemName, validKeyList);
     }
 
     private static boolean willing() throws IOException{
