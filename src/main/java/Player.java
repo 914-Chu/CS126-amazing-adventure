@@ -3,15 +3,18 @@ import java.util.*;
 public class Player {
 
     private List<Item> items;
-    private List<String> itemNameList;
+    private List<String> itemNameList = new ArrayList<>();
 
     public Player() {
 
-        for(Item item: items) {
+        if(items != null) {
+            for (Item item : items) {
 
-            itemNameList.add(item.getItemName());
+                itemNameList.add(item.getItemName());
+            }
         }
     }
+
     public List<Item> getPlayerItemList() {return items;}
 
     public boolean use(String item) {

@@ -17,7 +17,7 @@ public class MainTest {
     public void setUp() throws Exception {
 
         input = new Input();
-        String json = input.processInput("content");
+        String json = Input.processInput("content");
         layout = new Gson().fromJson(json, Layout.class);
         layout.setCurrentRoom(layout.getStartingRoom());
         roomList = layout.getRoomList();
@@ -55,7 +55,7 @@ public class MainTest {
     //               "room": "SiebelEntry", ...
 
     @Test
-    public void testIsValidDirection() {
+    public void testIsValidDirection() throws IOException{
 
         String validDirection = "eAsT";
         String invalidDirection1 = "NoRTH";

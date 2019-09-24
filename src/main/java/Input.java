@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 
 public class Input {
 
-    public String processInput(String input) throws IOException{
+    public static String processInput(String input) throws IOException{
 
         String json;
 
@@ -30,7 +30,7 @@ public class Input {
         return null;
     }
 
-    public boolean isValidURL(String toCheck) {
+    public static boolean isValidURL(String toCheck) {
 
         try{
             URL url = new URL(toCheck);
@@ -51,7 +51,7 @@ public class Input {
     // Code below derived from:
     // https://stackoverflow.com/questions/468789/is-there-a-way-in-java-to-determine-if-a-path-is-valid-without-attempting-to-cre
 
-    public boolean isValidFile(String filename) {
+    public static boolean isValidFile(String filename) {
         try {
 
             String path = "src\\test\\test_resources\\" + filename;
@@ -68,7 +68,7 @@ public class Input {
         }
     }
 
-    public boolean isValidJson(String json) {
+    public static boolean isValidJson(String json) {
 
         Gson gson = new Gson();
         try {
@@ -82,12 +82,10 @@ public class Input {
         }
     }
 
-    public static String getUserInput(List<Direction> directionList) throws IOException{
+    public static String getUserInput() throws IOException{
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        System.out.print("From here, you can go: ");
-        Output.printDirections(directionList);
         return reader.readLine().trim();
     }
 

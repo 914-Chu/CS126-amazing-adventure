@@ -11,8 +11,8 @@ public class Main {
             System.err.println("Invalid program argument.");
             return;
         }
-        Input input = new Input();
-        String json =  input.processInput(args[0]);
+
+        String json =  Input.processInput(args[0]);
         if(json == null) {
 
             System.err.println("Json parsing failed");
@@ -33,7 +33,10 @@ public class Main {
                 System.out.println("Your journey begins here");
                 isStart = false;
             }
-            userInput = Input.getUserInput(layout.getCurrentDirectionList());
+
+            System.out.print("From here, you can go: ");
+            Output.printDirections(layout.getCurrentDirectionList());
+            userInput = Input.getUserInput();
 
             if(toLeave(userInput)) {
 
@@ -63,15 +66,27 @@ public class Main {
         return(toLowerCase.equals("go "));
     }
 
-    public static boolean isValidDirection(String userDirection, Layout layout) {
+    public static boolean isValidDirection(String userDirection, Layout layout) throws IOException{
 
         for(Direction direction : layout.getCurrentDirectionList()) {
 
-            String directionName = direction.getDirectionName();
-            if(userDirection.equalsIgnoreCase(directionName)) {
+            if(userDirection.equalsIgnoreCase(direction.getDirectionName())) {
 
-                layout.setNextRoomName(direction.getRoomInDirection());
-                return true;
+                if(!direction.getIsDirectionEnabled() && !ifForward(layout.getPlayer(), direction)) {
+
+                    boolean tryAgain = true;
+
+                    do {
+                        Output.printDirectionDenied(direction.getDirectionName());
+                        Output.printIfUseAgain();
+
+                    }while(tryAgain);
+                    return false;
+                }else{
+
+                    layout.setNextRoomName(direction.getRoomInDirection());
+                    return true;
+                }
             }
         }
         Output.printInvalid(userDirection);
@@ -86,6 +101,15 @@ public class Main {
     public static boolean toLeave(String userInput) {
 
         return userInput.equalsIgnoreCase("exit") || userInput.equalsIgnoreCase("quit");
+    }
+
+    public static boolean ifForward(Player player, Direction direction) throws IOException{
+
+
+        List<String> validKeyList = direction.getValidKeyNamesList();
+        Output.printValidKey(validKeyList);
+        String itemName = Input.getUserInput();
+        return validKeyList.contains(itemName) && player.use(itemName);
     }
 
 }

@@ -7,11 +7,9 @@ import static org.junit.Assert.*;
 
 public class InputTest {
 
-    Input input;
     @Before
     public void setUp() {
 
-        input = new Input();
     }
 
     @Test
@@ -19,8 +17,8 @@ public class InputTest {
 
         String invalidInput = "ugld8sjfole;;";
         String nothing = "";
-        assertNull(input.processInput(invalidInput));
-        assertNull(input.processInput(nothing));
+        assertNull(Input.processInput(invalidInput));
+        assertNull(Input.processInput(nothing));
     }
 
     @Test
@@ -29,9 +27,9 @@ public class InputTest {
         String validURL = "https://courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json";
         String invalidFormURL = "courses.grainger.illinois.edu/cs126/fa2019/assignments/siebel.json";
         String invalidConnectionURL = "https://forums";
-        assertTrue(input.isValidURL(validURL));
-        assertFalse(input.isValidURL(invalidFormURL));
-        assertFalse(input.isValidURL(invalidConnectionURL));
+        assertTrue(Input.isValidURL(validURL));
+        assertFalse(Input.isValidURL(invalidFormURL));
+        assertFalse(Input.isValidURL(invalidConnectionURL));
     }
 
     @Test
@@ -39,8 +37,8 @@ public class InputTest {
 
         String validFile = "content";
         String invalidFile = "java";
-        assertTrue(input.isValidFile(validFile));
-        assertFalse(input.isValidFile(invalidFile));
+        assertTrue(Input.isValidFile(validFile));
+        assertFalse(Input.isValidFile(invalidFile));
     }
 
     //Unsolved: Different schema
@@ -49,8 +47,8 @@ public class InputTest {
 
         String validJson = "{\"status\": \"UP\"}";
         String invalidJson = "\"status\": \"UP\"}";
-        assertTrue(input.isValidJson(validJson));
-        assertFalse(input.isValidJson(invalidJson));
+        assertTrue(Input.isValidJson(validJson));
+        assertFalse(Input.isValidJson(invalidJson));
     }
 
 }

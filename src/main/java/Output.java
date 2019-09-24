@@ -48,4 +48,23 @@ public class Output {
 
         System.out.println("You don't have " + itemName);
     }
+
+    public static void printValidKey(List<String> validKeyList) {
+
+        System.out.println("You can enable this direction by using:");
+        for(String validKey : validKeyList) {
+
+            System.out.println(validKey);
+        }
+    }
+
+    public static void printDirectionDenied(String directionName) {
+
+        System.out.println("You've been denied to go " + directionName);
+    }
+
+    public static void printIfUseAgain() {
+
+        System.out.println("Do you want to try using another item?");
+    }
 }
