@@ -114,6 +114,12 @@ public class Output {
         System.out.println(itemName + " can't be used to enable this direction.");
     }
 
+    public static void mission() {
+
+        System.out.println("In order to win the game, " +
+                            "find all the computer components and build it correctly at the ending room");
+    }
+
     public static String format(String input) {
 
         String trim = input.trim();
@@ -137,5 +143,7 @@ public class Output {
             System.out.print(list.get(0));
         }
     }
+
+
 
 }

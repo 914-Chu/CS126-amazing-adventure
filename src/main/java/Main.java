@@ -23,9 +23,12 @@ public class Main {
         String startingRoom = layout.getStartingRoom();
         String endingRoom = layout.getEndingRoom();
         layout.setCurrentRoom(startingRoom);
+        Computer computer = new Computer();
         String userInput;
         boolean isStart = true;
         boolean isEnd = false;
+
+        Output.mission();
 
         do{
 

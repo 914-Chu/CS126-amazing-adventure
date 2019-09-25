@@ -5,7 +5,7 @@
     {
       "name": "MatthewsStreet",
       "description": "You are on Matthews, outside the Siebel Center",
-      "items": [{"name": "Coin"}],
+      "items": [{"name": "Coin"}, {"name": "Water bottle"}, {"name": "Cooling system"}],
       "directions": [
         {
           "directionName": "East",
@@ -18,7 +18,7 @@
     {
       "name": "SiebelEntry",
       "description": "You are in the west entry of Siebel Center. You can see the elevator, the ACM office, and hallways to the north and east.",
-      "items": [{"name": "Sweatshirt"}, {"name": "Key"}],
+      "items": [{"name": "Sweatshirt"}, {"name": "Key"}, {"name": "PSU"}],
       "directions": [
         {
           "directionName": "West",
@@ -49,7 +49,7 @@
     {
       "name": "AcmOffice",
       "description": "You are in the ACM office.  There are lots of friendly ACM people.",
-      "items": [{"name": "Pizza"}, {"name": "Swag"}],
+      "items": [{"name": "Pizza"}, {"name": "Memory(RAM)"}],
       "directions": [
         {
           "directionName": "South",
@@ -62,6 +62,7 @@
     {
       "name": "SiebelNorthHallway",
       "description": "You are in the north hallway.  You can see Siebel 1112 and the door toward NCSA.",
+      "items": [{"name": "Notes"}, {"name": "Hard drive(SSD)"}],
       "directions": [
         {
           "directionName": "South",
@@ -80,7 +81,7 @@
     {
       "name": "Siebel1112",
       "description": "You are in Siebel 1112.  There is space for two code reviews in this room.",
-      "items": [{"name":"USB-C connector"}, {"name": "Grading rubric"}],
+      "items": [{"name":"USB-C connector"}, {"name": "Grading rubric"},{"name": "Tissue"},{"name": "News paper"}],
       "directions": [
         {
           "directionName": "West",
@@ -93,7 +94,7 @@
     {
       "name": "SiebelEastHallway",
       "description": "You are in the east hallway.  You can see Einstein Bros' Bagels and a stairway.",
-      "items": [{"name": "Bagel"}, {"name": "Coffee"}],
+      "items": [{"name": "Operating system"},{"name": "Bagel"}, {"name": "Case"}],
       "directions": [
         {
           "directionName": "West",
@@ -111,14 +112,14 @@
           "directionName": "Down",
           "room": "SiebelBasement",
           "enabled": true,
-          "validKeyNames": []
+          "validKeyNames": ["Charger", "Phone", "Homework"]
         }
       ]
     },
     {
       "name": "Siebel1314",
       "description": "You are in Siebel 1314.  There are happy CS 126 students doing a code review.",
-      "items": [{"name": "Eraser"}],
+      "items": [{"name": "CPU"},{"name": "Marshmallow"},{"name": "Motherboard"}],
       "directions": [
         {
           "directionName": "North",
@@ -131,18 +132,18 @@
     {
       "name": "SiebelBasement",
       "description": "You are in the basement of Siebel.  You see tables with students working and door to computer labs.",
-      "items": [{"name": "Pencil"}],
+      "items": [{"name": "GPU"},{"name": "Glasses"}],
       "directions": [
         {
           "directionName": "Up",
           "room": "SiebelEastHallway",
           "enabled": true,
-          "validKeyNames": []
+          "validKeyNames": ["Brownies"]
         }
       ]
     }
   ],
   "player": {
-      "items": [{"name":"Pencil"},{"name": "Eraser"}]
+      "items": [{"name": "Id"},{"name":"Pencil"},{"name": "Eraser"}]
   }
 }
