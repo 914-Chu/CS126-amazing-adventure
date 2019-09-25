@@ -22,17 +22,6 @@ public class MainTest {
         roomList = layout.getRoomList();
     }
 
-//    @Test
-//    public void deserializeCheckSchema() throws IOException {
-//
-//        String valid = input.processInput("validSchema");
-//        String invalid = input.processInput("invalidSchema");
-//        Object validObject = new Gson().fromJson(valid, Layout.class);
-//        Object invalidObject = new Gson().fromJson(invalid, Object.class);
-//        assertTrue(validObject instanceof Layout);
-//        assertFalse(invalidObject instanceof Layout);
-//    }
-
     @Test
     public void deserializeNotNull() throws com.google.gson.JsonParseException {
 
@@ -46,28 +35,6 @@ public class MainTest {
         assertTrue(Main.startWithGo("Go wesT"));
         assertFalse(Main.startWithGo("akdj;le go akj"));
         assertFalse(Main.startWithGo("gopher"));
-    }
-
-
-    //test the starting room:MatthewsStreet
-    //"directions": ["directionName": "East",
-    //               "room": "SiebelEntry", ...
-
-    @Test
-    public void testIsValidDirection() throws IOException{
-
-        String validDirection = "eAsT";
-        String invalidDirection1 = "NoRTH";
-        String invalidDirection2 = "soUth";
-        String invalidDirection3 = "west";
-        String invalidDirection4 = "NorTHeAst";
-
-        assertTrue(Main.isValidDirection(validDirection, layout));
-        assertEquals("SiebelEntry", layout.getNextRoomName());
-        assertFalse(Main.isValidDirection(invalidDirection1,layout));
-        assertFalse(Main.isValidDirection(invalidDirection2, layout));
-        assertFalse(Main.isValidDirection(invalidDirection3,layout));
-        assertFalse(Main.isValidDirection(invalidDirection4,layout));
     }
 
     @Test
@@ -97,7 +64,7 @@ public class MainTest {
     }
 
     @Test
-    public void testInValidKeyList() {
+    public void testInvalidKeyList() {
 
         List<String> item = new ArrayList<>(Arrays.asList("pencil", "eraser", "pen"));
         assertTrue(Main.inValidKeyList("PeNciL",item));

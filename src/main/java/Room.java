@@ -12,7 +12,6 @@ public class Room {
     public List<Item> getItemsList() {return items;}
     public List<Direction> getDirectionsList() {return directions;}
 
-
     public List<String> getItemNameList() {
 
         List<String> itemNameList = new ArrayList<>();
@@ -23,4 +22,33 @@ public class Room {
         return itemNameList;
     }
 
+    public boolean took(String item) {
+
+        List<String> nameList = getItemNameList();
+        for(int i = 0; i < nameList.size(); i++) {
+
+            if(nameList.get(i).equalsIgnoreCase(item)) {
+
+                items.remove(i);
+                return true;
+            }
+        }
+        Output.notExist(Output.format(item));
+        return false;
+    }
+
+    public void left(String item) {
+
+        boolean exist = false;
+        List<String> nameList = getItemNameList();
+        for(int i = 0; i < nameList.size(); i++) {
+
+            if(nameList.get(i).equalsIgnoreCase(item)) {
+
+                exist = true;
+            }
+        }
+
+        if(!exist) items.add(new Item(item));
+    }
 }

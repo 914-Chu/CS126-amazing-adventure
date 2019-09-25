@@ -86,12 +86,13 @@ public class Input {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        return reader.readLine().trim();
+        String userInput = reader.readLine().trim();
+        while(userInput.isEmpty()) {
+
+            System.out.println("Nothing was entered, please try again.");
+            userInput = reader.readLine().trim();
+        }
+        return userInput;
     }
 
-//    public static boolean isValidSchema(String json) {
-//
-//        String defaultSchema = Data.getFileContents("src", "test", "test_resources", "defaultSchema");
-//        Jsonschema schema = JsonSchema.Parse(defaultSchema);
-//    }
 }

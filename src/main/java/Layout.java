@@ -8,21 +8,16 @@ public class Layout {
     private Player player;
 
     private Room currentRoom;
-    private List<Direction> currentDirectionList;
-    private List<String> directionNameList;
+    private List<String> currentDirectionNameList;
     private List<String> roomNameList;
-    private String nextRoomName;
 
     public String getStartingRoom() { return startingRoom;}
     public String getEndingRoom() {return endingRoom;}
     public List<Room> getRoomList() {return rooms;}
     public Player getPlayer() {return player;}
     public Room getCurrentRoom() {return currentRoom;}
-    public List<Direction> getCurrentDirectionList() {return  currentDirectionList;}
-    public List<String> getDirectionNameList() {return directionNameList;}
+    public List<String> getDirectionNameList() {return currentDirectionNameList;}
     public List<String> getRoomNameList() {return roomNameList;}
-    public String getNextRoomName() {return nextRoomName;}
-
 
     public Room findRoom(String room) {
 
@@ -43,21 +38,33 @@ public class Layout {
         if(isValidRoom(currentRoom)) {
 
             this.currentRoom = findRoom(currentRoom);
-            currentDirectionList = findDirections(this.currentRoom);
-            directionNameList = generateDirectionNameList();
+            currentDirectionNameList = generateDirectionNameList();
         }
     }
 
-    public List<Direction> findDirections(Room room) {
+    public Direction findDirection(String directionName) {
 
-        return new ArrayList<>(room.getDirectionsList());
+        for(Direction direction : currentRoom.getDirectionsList()) {
+
+            if(directionName.equalsIgnoreCase(direction.getDirectionName())){
+
+                return direction;
+            }
+        }
+        return null;
     }
 
-    public void setNextRoomName(String nextRoomName) {
 
-        if(isValidRoom(nextRoomName)){
-            this.nextRoomName = nextRoomName;
+    public boolean isValidDirection(String direction) {
+
+        for(String name : currentDirectionNameList) {
+
+            if(name.equalsIgnoreCase(direction)) {
+
+                return true;
+            }
         }
+        return false;
     }
 
     public boolean isValidRoom(String room) {
@@ -76,8 +83,8 @@ public class Layout {
 
         List<String> directionNameList = new ArrayList<>();
 
-        for(Direction direction : currentDirectionList) {
-            directionNameList.add(Output.format(direction.getDirectionName()));
+        for(Direction direction : currentRoom.getDirectionsList()) {
+            directionNameList.add(direction.getDirectionName());
         }
         return directionNameList;
     }

@@ -2,6 +2,8 @@ import static org.junit.Assert.*;
 import com.google.gson.Gson;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.IOException;
 import java.util.*;
 
 public class LayoutTest {
@@ -51,10 +53,31 @@ public class LayoutTest {
         assertNotEquals("DiningRoom", layout.getCurrentRoom().getRoomName());
     }
 
+    //test the starting room:MatthewsStreet
+    //"directions": ["directionName": "East",
+    //               "room": "SiebelEntry", ...
+
     @Test
-    public void testIsValid() {
+    public void testIsValidDirection() {
+
+        String validDirection = "eAsT";
+        String invalidDirection1 = "NoRTH";
+        String invalidDirection2 = "soUth";
+        String invalidDirection3 = "west";
+        String invalidDirection4 = "NorTHeAst";
+
+        assertTrue(layout.isValidDirection(validDirection));
+        assertFalse(layout.isValidDirection(invalidDirection1));
+        assertFalse(layout.isValidDirection(invalidDirection2));
+        assertFalse(layout.isValidDirection(invalidDirection3));
+        assertFalse(layout.isValidDirection(invalidDirection4));
+    }
+
+    @Test
+    public void testIsValidRoom() {
 
         assertTrue(layout.isValidRoom("SiebelNoRTHHallway"));
         assertFalse(layout.isValidRoom("Restroom"));
     }
+
 }

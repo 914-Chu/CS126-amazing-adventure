@@ -45,18 +45,6 @@ public class Player {
         return true;
     }
 
-    public boolean inList(String itemName) {
-
-        for(String name : getItemNameList()) {
-
-            if (name.equalsIgnoreCase(itemName)) {
-
-                return true;
-            }
-        }
-        return false;
-    }
-
     public List<String> getItemNameList() {
 
         List<String> itemNameList = new ArrayList<>();

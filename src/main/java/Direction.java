@@ -12,15 +12,4 @@ public class Direction {
     public boolean getIsDirectionEnabled() {return  enabled;}
     public List<String> getValidKeyNamesList() {return validKeyNames;}
 
-    public Direction(String direction) {
-
-        directionName = Output.format(direction);
-        room = "Default room";
-        enabled = true;
-        validKeyNames = new ArrayList<>();
-        validKeyNames.add("key0");
-        validKeyNames.add("key1");
-        validKeyNames.add("key2");
-    }
-
 }

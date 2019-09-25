@@ -4,24 +4,28 @@ public class Output {
 
     public static void description(Room currentRoom) {
 
-        if(currentRoom.getItemsList().size() == 0) {
-            System.out.println("Empty item list");
-            return;
-        }
         System.out.println(currentRoom.getRoomDescription());
-        System.out.print("You can see ");
-        formatList(currentRoom.getItemNameList());
-        System.out.println(" here.");
+        if(currentRoom.getItemsList() == null || currentRoom.getItemsList().isEmpty()) {
+            System.out.println("There's nothing here.");
+        }else {
+
+            System.out.print("You can see ");
+            formatList(currentRoom.getItemNameList());
+            System.out.println(" here.");
+            System.out.println("Do you want to pick up anything?");
+        }
     }
 
     public static void directions(List<String> directionNameList) {
 
-        if(directionNameList.size() == 0) {
+        if(directionNameList == null || directionNameList.isEmpty()) {
             System.out.println("Empty direction list");
-            return;
+
+        }else {
+            System.out.print("From here, you can go: ");
+            formatList(directionNameList);
+            System.out.println();
         }
-        formatList(directionNameList);
-        System.out.println();
     }
 
     public static void end() {
@@ -55,6 +59,11 @@ public class Output {
         System.out.println("You don't have " + itemName);
     }
 
+    public static void notExist(String itemName) {
+
+        System.out.println("There isn't " + itemName + " in this room.");
+    }
+
     public static void options(List<String> validKeyList, List<String> playerItemList) {
 
         System.out.println("You can enable this direction by using:");
@@ -73,7 +82,7 @@ public class Output {
         System.out.println("You've been denied to go " + directionName);
     }
 
-    public static void askPermission() {
+    public static void askIfUse() {
 
         System.out.println("Do you want to try enabling this direction with items? (Enter yes/anything else will be considered no)");
     }

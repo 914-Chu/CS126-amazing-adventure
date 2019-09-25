@@ -19,7 +19,6 @@ public class PlayerTest {
 
         Player player = new Player();
         assertTrue(player.use("cup"));
-        assertFalse(player.inList("Cup"));
         assertFalse(player.use("cUp"));
         assertFalse((player.use("pEn")));
     }
@@ -29,7 +28,6 @@ public class PlayerTest {
 
         Player player = new Player();
         assertTrue(player.pickUp("Watch"));
-        assertTrue(player.inList("watch"));
         assertFalse(player.pickUp("WATch"));
         assertFalse(player.pickUp("Cup"));
     }
