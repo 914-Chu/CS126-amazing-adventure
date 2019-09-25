@@ -12,7 +12,6 @@ public class Output {
             System.out.print("You can see ");
             formatList(currentRoom.getItemNameList());
             System.out.println(" here.");
-            System.out.println("Do you want to pick up anything?");
         }
     }
 
@@ -26,6 +25,13 @@ public class Output {
             formatList(directionNameList);
             System.out.println();
         }
+    }
+
+    public static void playerItem(List<String> itemList) {
+
+        System.out.print("You have: ");
+        formatList(itemList);
+        System.out.println();
     }
 
     public static void end() {
@@ -54,6 +60,16 @@ public class Output {
         System.out.println("You already have " + itemName);
     }
 
+    public static void leave(String itemName) {
+
+        System.out.println("Left " + itemName + " successfully.");
+    }
+
+    public static void pick(String itemName) {
+
+        System.out.println("Picked up " + itemName + " successfully.");
+    }
+
     public static void noItem(String itemName) {
 
         System.out.println("You don't have " + itemName);
@@ -64,15 +80,11 @@ public class Output {
         System.out.println("There isn't " + itemName + " in this room.");
     }
 
-    public static void options(List<String> validKeyList, List<String> playerItemList) {
+    public static void options(List<String> validKeyList) {
 
         System.out.println("You can enable this direction by using:");
         for(String validKey : validKeyList) {
             System.out.print(validKey + " ");
-        }
-        System.out.println("\nYour items:");
-        for(String item: playerItemList) {
-            System.out.print(item + " ");
         }
         System.out.println();
     }
@@ -80,6 +92,16 @@ public class Output {
     public static void directionDenied(String directionName) {
 
         System.out.println("You've been denied to go " + directionName);
+    }
+
+    public static void askAction() {
+
+        System.out.println("Do you want to pick up or leave anything?(Enter yes/anything else will be considered no)");
+    }
+
+    public static void pickOrLeave() {
+
+        System.out.println("What do you want to pick up or leave?");
     }
 
     public static void askIfUse() {

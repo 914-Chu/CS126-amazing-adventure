@@ -18,9 +18,9 @@ public class PlayerTest {
     public void testUse(){
 
         Player player = new Player();
-        assertTrue(player.use("cup"));
-        assertFalse(player.use("cUp"));
-        assertFalse((player.use("pEn")));
+        assertTrue(player.leave("cup"));
+        assertFalse(player.leave("cUp"));
+        assertFalse((player.leave("pEn")));
     }
 
     @Test

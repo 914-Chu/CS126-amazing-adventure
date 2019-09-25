@@ -1,6 +1,4 @@
 import java.util.*;
-import java.util.List;
-import java.util.ArrayList;
 
 public class Player {
 
@@ -15,7 +13,7 @@ public class Player {
         items.add(new Item("Phone"));
     }
 
-    public boolean use(String item) {
+    public boolean leave(String item) {
 
         List<String> nameList = getItemNameList();
         for(int i = 0; i < nameList.size(); i++) {
@@ -23,6 +21,7 @@ public class Player {
             if(nameList.get(i).equalsIgnoreCase(item)) {
 
                 items.remove(i);
+                Output.leave(item);
                 return true;
             }
         }
@@ -41,6 +40,7 @@ public class Player {
                 return false;
             }
         }
+        Output.pick(item);
         items.add(new Item(item));
         return true;
     }

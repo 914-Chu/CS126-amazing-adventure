@@ -34,6 +34,7 @@ public class Main {
                 isStart = false;
             }
             Output.description(layout.getCurrentRoom());
+            Output.playerItem(layout.getPlayer().getItemNameList());
             pickOrNot(layout.getPlayer(), layout.getCurrentRoom());
             Output.directions(layout.getDirectionNameList());
             userInput = Input.getUserInput();
@@ -41,7 +42,7 @@ public class Main {
             if(toLeave(userInput)) {
 
                 isEnd = true;
-            }else if(startWithGo(userInput)){
+            }else if(startWith(userInput, "go ")){
 
                 int afterGo = "go ".length();
                 String userDirection = userInput.substring(afterGo).trim();
@@ -71,10 +72,10 @@ public class Main {
         }while(!isEnd);
     }
 
-    public static boolean startWithGo(String userInput) {
+    public static boolean startWith(String userInput, String action) {
 
-        String toLowerCase = userInput.toLowerCase().substring(0, "go ".length());
-        return(toLowerCase.equals("go "));
+        String toLowerCase = userInput.toLowerCase().substring(0, action.length());
+        return(toLowerCase.equals(action));
     }
 
     public static boolean checkEnd(String currentRoomName, String endingRoom) {
@@ -98,24 +99,47 @@ public class Main {
         return false;
     }
 
-    public static void pickOrNot(Player player, Room currentRoom) {
+    public static void pickOrNot(Player player, Room currentRoom) throws IOException{
 
-        
+        Output.askAction();
+        while(willing()){
+
+            Output.pickOrLeave();
+            String action = Input.getUserInput();
+            if(startWith(action, "pick up")) {
+
+                int afterAction = "pick up".length();
+                String item = Output.format(action.substring(afterAction).trim());
+                if(currentRoom.took(item)) {
+                    player.pickUp(item);
+                }
+            }else if(startWith(action, "leave ")) {
+
+                int afterAction = "leave ".length();
+                String item = Output.format(action.substring(afterAction).trim());
+                if(player.leave(item)) {
+                    currentRoom.left(item);
+                }
+            }
+            Output.askAction();
+        }
+
     }
 
     private static boolean ifForward(Player player, List<String> validKeyList) throws IOException{
 
+        Output.askIfUse();
         if(!willing()) return false;
 
-        Output.options(validKeyList, player.getItemNameList());
+        Output.options(validKeyList);
+        Output.playerItem(player.getItemNameList());
         String itemName = Output.format(Input.getUserInput());
 
-        return player.use(itemName) && inValidKeyList(itemName, validKeyList);
+        return player.leave(itemName) && inValidKeyList(itemName, validKeyList);
     }
 
     private static boolean willing() throws IOException{
 
-        Output.askIfUse();
         String userInput = Input.getUserInput();
 
         return userInput.equalsIgnoreCase("yes");

@@ -31,10 +31,10 @@ public class MainTest {
     @Test
     public void testStartWithGo() {
 
-        assertTrue(Main.startWithGo("go EaST"));
-        assertTrue(Main.startWithGo("Go wesT"));
-        assertFalse(Main.startWithGo("akdj;le go akj"));
-        assertFalse(Main.startWithGo("gopher"));
+        assertTrue(Main.startWith("go EaST", "go "));
+        assertTrue(Main.startWith("Go wesT", "go "));
+        assertFalse(Main.startWith("akdj;le go akj", "go "));
+        assertFalse(Main.startWith("gopher", "go "));
     }
 
     @Test
