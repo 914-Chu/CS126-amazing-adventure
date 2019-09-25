@@ -12,8 +12,6 @@ public class Direction {
     public boolean getIsDirectionEnabled() {return  enabled;}
     public List<String> getValidKeyNamesList() {return validKeyNames;}
 
-    public Direction() {}
-
     public Direction(String direction) {
 
         directionName = Output.format(direction);

@@ -40,6 +40,11 @@ public class Output {
         System.out.println("I can't go " + invalid + " from here.");
     }
 
+    public static void invalidRoom(String room) {
+
+        System.out.println(room + " doesn't exist in the game.");
+    }
+
     public static void duplicate(String itemName) {
 
         System.out.println("You already have " + itemName);

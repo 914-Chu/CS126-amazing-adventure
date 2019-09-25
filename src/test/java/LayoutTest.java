@@ -14,7 +14,6 @@ public class LayoutTest {
         String json = Input.getJson("content");
         layout = new Gson().fromJson(json, Layout.class);
         layout.setCurrentRoom(layout.getStartingRoom());
-        rand = new Random();
     }
 
 
@@ -43,4 +42,19 @@ public class LayoutTest {
         assertNull(roomNotFount);
     }
 
+    @Test
+    public void testSetCurrentRoom() {
+
+        layout.setCurrentRoom("Siebel1112");
+        assertEquals("Siebel1112", layout.getCurrentRoom().getRoomName());
+        layout.setCurrentRoom("DinginRoom");
+        assertNotEquals("DiningRoom", layout.getCurrentRoom().getRoomName());
+    }
+
+    @Test
+    public void testIsValid() {
+
+        assertTrue(layout.isValidRoom("SiebelNoRTHHallway"));
+        assertFalse(layout.isValidRoom("Restroom"));
+    }
 }

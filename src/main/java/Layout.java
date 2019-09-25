@@ -10,6 +10,7 @@ public class Layout {
     private Room currentRoom;
     private List<Direction> currentDirectionList;
     private List<String> directionNameList;
+    private List<String> roomNameList;
     private String nextRoomName;
 
     public String getStartingRoom() { return startingRoom;}
@@ -18,7 +19,8 @@ public class Layout {
     public Player getPlayer() {return player;}
     public Room getCurrentRoom() {return currentRoom;}
     public List<Direction> getCurrentDirectionList() {return  currentDirectionList;}
-    public List<String> getDirectionNameList() {return directionNameList;};
+    public List<String> getDirectionNameList() {return directionNameList;}
+    public List<String> getRoomNameList() {return roomNameList;}
     public String getNextRoomName() {return nextRoomName;}
 
 
@@ -35,19 +37,39 @@ public class Layout {
 
     public void setCurrentRoom(String currentRoom) {
 
-        this.currentRoom = findRoom(currentRoom);
-        currentDirectionList = findDirections(this.currentRoom);
-        directionNameList = generateDirectionNameList();
+        if(roomNameList == null) {
+            roomNameList = generateRoomNameList();
+        }
+        if(isValidRoom(currentRoom)) {
+
+            this.currentRoom = findRoom(currentRoom);
+            currentDirectionList = findDirections(this.currentRoom);
+            directionNameList = generateDirectionNameList();
+        }
     }
 
-    public static List<Direction> findDirections(Room room) {
+    public List<Direction> findDirections(Room room) {
 
         return new ArrayList<>(room.getDirectionsList());
     }
 
     public void setNextRoomName(String nextRoomName) {
 
-        this.nextRoomName = nextRoomName;
+        if(isValidRoom(nextRoomName)){
+            this.nextRoomName = nextRoomName;
+        }
+    }
+
+    public boolean isValidRoom(String room) {
+
+        for(String existRoom : roomNameList) {
+
+            if(existRoom.equalsIgnoreCase(room)){
+                return true;
+            }
+        }
+        Output.invalidRoom(room);
+        return false;
     }
 
     private List<String> generateDirectionNameList() {
@@ -58,6 +80,16 @@ public class Layout {
             directionNameList.add(Output.format(direction.getDirectionName()));
         }
         return directionNameList;
+    }
+
+    private List<String> generateRoomNameList() {
+
+        List<String> roomNameList = new ArrayList<>();
+
+        for(Room room : rooms) {
+            roomNameList.add(room.getRoomName());
+        }
+        return roomNameList;
     }
 
 }

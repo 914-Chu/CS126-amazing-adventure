@@ -67,16 +67,4 @@ public class Player {
         return itemNameList;
     }
 
-
-    private boolean isEqualItem(List<Item> list1, List<Item> list2){
-
-        return (list1.size() == list2.size()) && isEqualItem(list1, list2, 0);
-    }
-
-    private boolean isEqualItem(List<Item> list1, List<Item> list2, int index) {
-
-        boolean equalElement = list1.get(index).getItemName().equals(list2.get(index).getItemName());
-        return index == list1.size() - 1 || (equalElement && isEqualItem(list1, list2, index + 1));
-    }
-
 }
