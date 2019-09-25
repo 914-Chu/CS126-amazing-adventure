@@ -10,8 +10,8 @@
 
 ### Automatic Testing - 12/20
 
-### Process - 16/20
-Commits could have more meaningful messages than "version 1"
+### Process - 18/20
+Commits could have more meaningful messages
 
 ### Presentation - 10/10
 
