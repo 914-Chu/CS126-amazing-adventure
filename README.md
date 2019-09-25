@@ -17,4 +17,4 @@ Commits could have more meaningful messages
 
 ### Participation - 10/10
 
-## Grade Total: 78/100
+## Grade Total: 80/100
